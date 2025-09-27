@@ -1,0 +1,10 @@
+h1 Editing church service
+
+== render "form", church_service: @church_service
+
+br
+
+div
+  => link_to "Show this church service", @church_service
+  '|
+  =< link_to "Back to church services", church_services_path

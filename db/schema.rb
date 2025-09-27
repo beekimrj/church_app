@@ -10,20 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_27_121646) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_27_141334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "church_services", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.bigint "service_group_id", null: false
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_group_id"], name: "index_church_services_on_service_group_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "status"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.bigint "service_id", null: false
+    t.bigint "church_service_id", null: false
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_events_on_service_id"
+    t.index ["church_service_id"], name: "index_events_on_church_service_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -38,9 +48,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_121646) do
     t.date "baptism_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["first_name"], name: "index_members_on_first_name"
-    t.index ["last_name"], name: "index_members_on_last_name"
-    t.index ["phone_number"], name: "index_members_on_phone_number"
   end
 
   create_table "service_groups", force: :cascade do |t|
@@ -51,16 +58,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_121646) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
-    t.bigint "service_group_id", null: false
-    t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_group_id"], name: "index_services_on_service_group_id"
-  end
-
-  add_foreign_key "events", "services"
-  add_foreign_key "services", "service_groups"
+  add_foreign_key "church_services", "service_groups"
+  add_foreign_key "events", "church_services"
 end

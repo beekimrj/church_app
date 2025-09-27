@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "services/show", type: :view do
+RSpec.describe "church_services/show", type: :view do
   before(:each) do
-    assign(:service, Service.create!(
+    assign(:church_service, ChurchService.create!(
       name: "Name",
       status: "Status",
       service_group: nil,

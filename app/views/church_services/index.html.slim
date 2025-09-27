@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Church services
+
+#church_services
+  - @church_services.each do |church_service|
+    == render church_service
+    p
+      = link_to "Show this church service", church_service
+
+= link_to "New church service", new_church_service_path

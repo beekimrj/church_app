@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: services
+# Table name: church_services
 #
 #  id               :integer          not null, primary key
 #  name             :string
@@ -12,9 +12,11 @@
 #
 # Indexes
 #
-#  index_services_on_service_group_id  (service_group_id)
+#  index_church_services_on_service_group_id  (service_group_id)
 #
 
-class Service < ApplicationRecord
-  belongs_to :service_group
+require 'rails_helper'
+
+RSpec.describe ChurchService, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
