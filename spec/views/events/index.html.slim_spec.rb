@@ -6,13 +6,13 @@ RSpec.describe "events/index", type: :view do
       Event.create!(
         name: "Name",
         status: "Status",
-        service: nil,
+        church_service: nil,
         code: "Code"
       ),
       Event.create!(
         name: "Name",
         status: "Status",
-        service: nil,
+        church_service: nil,
         code: "Code"
       )
     ])

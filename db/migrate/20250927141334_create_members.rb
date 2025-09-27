@@ -13,9 +13,5 @@ class CreateMembers < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :members, :first_name
-    add_index :members, :last_name
-    add_index :members, :phone_number
   end
 end

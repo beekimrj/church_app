@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: services
+# Table name: church_services
 #
 #  id               :integer          not null, primary key
 #  name             :string
@@ -12,11 +12,14 @@
 #
 # Indexes
 #
-#  index_services_on_service_group_id  (service_group_id)
+#  index_church_services_on_service_group_id  (service_group_id)
 #
 
-require 'rails_helper'
-
-RSpec.describe Service, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+FactoryBot.define do
+  factory :church_service do
+    name { "MyString" }
+    status { "MyString" }
+    service_group { nil }
+    code { "MyString" }
+  end
 end

@@ -5,7 +5,7 @@ RSpec.describe "events/show", type: :view do
     assign(:event, Event.create!(
       name: "Name",
       status: "Status",
-      service: nil,
+      church_service: nil,
       code: "Code"
     ))
   end

@@ -12,10 +12,10 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/services", type: :request do
+RSpec.describe "/church_services", type: :request do
   
   # This should return the minimal set of attributes required to create a valid
-  # Service. As you add validations to Service, be sure to
+  # ChurchService. As you add validations to ChurchService, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -27,58 +27,58 @@ RSpec.describe "/services", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Service.create! valid_attributes
-      get services_url
+      ChurchService.create! valid_attributes
+      get church_services_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      service = Service.create! valid_attributes
-      get service_url(service)
+      church_service = ChurchService.create! valid_attributes
+      get church_service_url(church_service)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_service_url
+      get new_church_service_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      service = Service.create! valid_attributes
-      get edit_service_url(service)
+      church_service = ChurchService.create! valid_attributes
+      get edit_church_service_url(church_service)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Service" do
+      it "creates a new ChurchService" do
         expect {
-          post services_url, params: { service: valid_attributes }
-        }.to change(Service, :count).by(1)
+          post church_services_url, params: { church_service: valid_attributes }
+        }.to change(ChurchService, :count).by(1)
       end
 
-      it "redirects to the created service" do
-        post services_url, params: { service: valid_attributes }
-        expect(response).to redirect_to(service_url(Service.last))
+      it "redirects to the created church_service" do
+        post church_services_url, params: { church_service: valid_attributes }
+        expect(response).to redirect_to(church_service_url(ChurchService.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Service" do
+      it "does not create a new ChurchService" do
         expect {
-          post services_url, params: { service: invalid_attributes }
-        }.to change(Service, :count).by(0)
+          post church_services_url, params: { church_service: invalid_attributes }
+        }.to change(ChurchService, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post services_url, params: { service: invalid_attributes }
+        post church_services_url, params: { church_service: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_content)
       end
     end
@@ -90,42 +90,42 @@ RSpec.describe "/services", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested service" do
-        service = Service.create! valid_attributes
-        patch service_url(service), params: { service: new_attributes }
-        service.reload
+      it "updates the requested church_service" do
+        church_service = ChurchService.create! valid_attributes
+        patch church_service_url(church_service), params: { church_service: new_attributes }
+        church_service.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the service" do
-        service = Service.create! valid_attributes
-        patch service_url(service), params: { service: new_attributes }
-        service.reload
-        expect(response).to redirect_to(service_url(service))
+      it "redirects to the church_service" do
+        church_service = ChurchService.create! valid_attributes
+        patch church_service_url(church_service), params: { church_service: new_attributes }
+        church_service.reload
+        expect(response).to redirect_to(church_service_url(church_service))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        service = Service.create! valid_attributes
-        patch service_url(service), params: { service: invalid_attributes }
+        church_service = ChurchService.create! valid_attributes
+        patch church_service_url(church_service), params: { church_service: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested service" do
-      service = Service.create! valid_attributes
+    it "destroys the requested church_service" do
+      church_service = ChurchService.create! valid_attributes
       expect {
-        delete service_url(service)
-      }.to change(Service, :count).by(-1)
+        delete church_service_url(church_service)
+      }.to change(ChurchService, :count).by(-1)
     end
 
-    it "redirects to the services list" do
-      service = Service.create! valid_attributes
-      delete service_url(service)
-      expect(response).to redirect_to(services_url)
+    it "redirects to the church_services list" do
+      church_service = ChurchService.create! valid_attributes
+      delete church_service_url(church_service)
+      expect(response).to redirect_to(church_services_url)
     end
   end
 end

@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration[8.0]
       t.string :status
       t.datetime :start_date
       t.datetime :end_date
-      t.references :service, null: false, foreign_key: true
+      t.references :church_service, null: false, foreign_key: true
       t.string :code
 
       t.timestamps

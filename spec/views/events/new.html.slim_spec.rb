@@ -5,7 +5,7 @@ RSpec.describe "events/new", type: :view do
     assign(:event, Event.new(
       name: "MyString",
       status: "MyString",
-      service: nil,
+      church_service: nil,
       code: "MyString"
     ))
   end
@@ -19,7 +19,7 @@ RSpec.describe "events/new", type: :view do
 
       assert_select "input[name=?]", "event[status]"
 
-      assert_select "input[name=?]", "event[service_id]"
+      assert_select "input[name=?]", "event[church_service_id]"
 
       assert_select "input[name=?]", "event[code]"
     end

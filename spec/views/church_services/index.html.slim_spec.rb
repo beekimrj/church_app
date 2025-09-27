@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "services/index", type: :view do
+RSpec.describe "church_services/index", type: :view do
   before(:each) do
-    assign(:services, [
-      Service.create!(
+    assign(:church_services, [
+      ChurchService.create!(
         name: "Name",
         status: "Status",
         service_group: nil,
         code: "Code"
       ),
-      Service.create!(
+      ChurchService.create!(
         name: "Name",
         status: "Status",
         service_group: nil,
@@ -18,7 +18,7 @@ RSpec.describe "services/index", type: :view do
     ])
   end
 
-  it "renders a list of services" do
+  it "renders a list of church_services" do
     render
     cell_selector = 'div>p'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
