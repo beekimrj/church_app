@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Services
+
+#services
+  - @services.each do |service|
+    == render service
+    p
+      = link_to "Show this service", service
+
+= link_to "New service", new_service_path
