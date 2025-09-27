@@ -1,0 +1,10 @@
+h1 Editing service group
+
+== render "form", service_group: @service_group
+
+br
+
+div
+  => link_to "Show this service group", @service_group
+  '|
+  =< link_to "Back to service groups", service_groups_path

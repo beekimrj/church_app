@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @service_group
+
+div
+  => link_to "Edit this service group", edit_service_group_path(@service_group)
+  '|
+  =< link_to "Back to service groups", service_groups_path
+
+  = button_to "Destroy this service group", @service_group, method: :delete

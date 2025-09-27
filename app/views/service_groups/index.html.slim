@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Service groups
+
+#service_groups
+  - @service_groups.each do |service_group|
+    == render service_group
+    p
+      = link_to "Show this service group", service_group
+
+= link_to "New service group", new_service_group_path
