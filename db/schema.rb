@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_27_120914) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_27_121646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_120914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["service_id"], name: "index_events_on_service_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "email"
+    t.date "date_of_birth"
+    t.string "code"
+    t.string "gender"
+    t.string "marital_status"
+    t.date "baptism_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["first_name"], name: "index_members_on_first_name"
+    t.index ["last_name"], name: "index_members_on_last_name"
+    t.index ["phone_number"], name: "index_members_on_phone_number"
   end
 
   create_table "service_groups", force: :cascade do |t|
