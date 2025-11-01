@@ -11,18 +11,17 @@
 @use "components/error_message";
 @use "components/form";
 @use "components/visually_hidden";
-@use "components/quote";
 @use "components/turbo_progress_bar";
 @use 'components/navbar';
 @use 'components/flash';
 @use 'components/empty_state';
-@use 'components/line_item_date';
-@use 'components/line_item';
-@use 'components/quote_total';
 
 // Layouts
 @use "layouts/container";
 @use "layouts/header";
+@use "layouts/home";
+@use "layouts/page";
+
 
 // Utilities
 @use "utilities/margins";

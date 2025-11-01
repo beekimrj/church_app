@@ -1,0 +1,16 @@
+header.navbar.columns
+  = link_to root_path, class: 'brand row center' do
+    = image_tag  "church_logo.gif", class: 'brand__logo'
+    span.brand__name
+      | Church of Pentecost
+  .menu_items.columns
+    span.menu_item.center
+      = link_to 'Home', root_path
+    span.menu_item.center
+      = link_to 'About Us', root_path
+    span.menu_item.center
+      = link_to 'Events', root_path
+    span.menu_item.center
+      = link_to 'Contact Us', root_path
+  .menu_button.center
+    = link_to 'Login', root_path

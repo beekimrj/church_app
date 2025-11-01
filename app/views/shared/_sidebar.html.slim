@@ -1,0 +1,13 @@
+sidebar.sidebar_container
+  = link_to root_path, class: 'logo_container' do
+    = image_tag  "church_logo.gif", class: 'logo'
+    span.logo_text
+      | Church of Pentecost
+  .menu_items
+    = menu_item(:church_services, :index, 'Services', nil,  {icon: 'fa-solid fa-church'})
+    = menu_item(:members, :index, 'Members', nil, {icon: 'fa-solid fa-people-group'})
+    = menu_item(:home, :home, 'Communications', root_path, {icon: 'fa-solid fa-message'})
+    = menu_item(:home, :home, 'Settings', root_path, {icon: 'fa-solid fa-wrench'})
+  .menu_buttons
+    = menu_item(:home, :home, 'My Profile', root_path, {icon: 'fa-solid fa-user', class: 'profile'})
+    = menu_item(:home, :home, 'Log Out', root_path, {icon: 'fa-solid fa-right-from-bracket', class: 'logout'})

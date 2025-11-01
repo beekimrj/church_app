@@ -1,25 +1,30 @@
 .navbar {
-  display: flex;
-  align-items: center;
   box-shadow: var(--shadow-large);
   padding: var(--space-xs) var(--space-m);
   margin-bottom: var(--space-xxl);
   background-color: (var(--color-white));
+  width: 100%;
 
-  &__brand {
-    font-weight: bold;
-    font-size: var(--font-size-xl);
-    color: var(--color-text-header);
+  .brand {
+    width: 5rem;
+
+    &__name {
+      font-weight: bold;
+      margin-left: auto;
+      margin-right: var(--space-s);
+      color: var(--color-text-header);
+    }
+
+    &__logo {
+      width: 6rem;
+    }
   }
 
-  &__name {
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: var(--space-s);
-    color: var(--color-text-header);
-  }
+  .menu_items {
+    width: 80%;
 
-  &__right {
-    margin-left: auto;
+    .menu_item a {
+      text-decoration: none;
+    }
   }
 }
