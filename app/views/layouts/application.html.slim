@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Church App
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="mobile-web-app-capable" content="yes"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
+
+  body
+    .layout
+      .layout__sidebar
+        = render "shared/sidebar"
+      .layout__main
+        main.main-content
+          - if notice.present?
+            .alert.alert--success = notice
+          - if alert.present?
+            .alert.alert--danger = alert
+          = yield

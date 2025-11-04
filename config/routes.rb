@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "pages/home"
   resources :members
   resources :events
   resources :church_services
@@ -17,5 +16,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "home", to: "pages#home"
-  root "pages#home"
+  root "members#index"
 end

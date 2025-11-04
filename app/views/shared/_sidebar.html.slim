@@ -6,8 +6,8 @@ sidebar.sidebar_container
   .menu_items
     = menu_item(:church_services, :index, 'Services', nil,  {icon: 'fa-solid fa-church'})
     = menu_item(:members, :index, 'Members', nil, {icon: 'fa-solid fa-people-group'})
-    = menu_item(:home, :home, 'Communications', root_path, {icon: 'fa-solid fa-message'})
-    = menu_item(:home, :home, 'Settings', root_path, {icon: 'fa-solid fa-wrench'})
+    = menu_item(:pages, :home, 'Communications', root_path, {icon: 'fa-solid fa-message'})
+    = menu_item(:pages, :home, 'Settings', root_path, {icon: 'fa-solid fa-wrench'})
   .menu_buttons
-    = menu_item(:home, :home, 'My Profile', root_path, {icon: 'fa-solid fa-user', class: 'profile'})
-    = menu_item(:home, :home, 'Log Out', root_path, {icon: 'fa-solid fa-right-from-bracket', class: 'logout'})
+    = menu_item(:pages, :home, 'My Profile', root_path, {icon: 'fa-solid fa-user', class: 'profile'})
+    = menu_item(:pages, :home, 'Log Out', root_path, {icon: 'fa-solid fa-right-from-bracket', class: 'logout'})
