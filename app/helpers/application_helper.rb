@@ -13,13 +13,13 @@ module ApplicationHelper
                     action.to_s.titleize
     end
 
-    menu_classes = [ classes_for_active_menu(controller, action), options[:class] ].compact.join(" ")
+    menu_classes = [ classes_for_active_menu(controller, action), "menu_item", options[:class] ].compact.join(" ")
 
-    content_tag(:span, id: "menu_#{menu_text.downcase.underscore}", class: "menu_item") do
+    # content_tag(:span, id: "menu_#{menu_text.downcase.underscore}", class: "menu_item") do
       link_to(url || link_params, class: menu_classes) do
         menu_icon_tag(options[:icon]) + menu_text
       end
-    end
+    # end
   end
 
   def menu_icon_tag(icon_class)

@@ -13,13 +13,11 @@ html
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
 
   body
-    .layout
-      .layout__sidebar
-        = render "shared/sidebar"
-      .layout__main
-        main.main-content
-          - if notice.present?
-            .alert.alert--success = notice
-          - if alert.present?
-            .alert.alert--danger = alert
-          = yield
+    .container
+      = render "shared/sidebar"
+      main
+        - if notice.present?
+          .alert.alert--success = notice
+        - if alert.present?
+          .alert.alert--danger = alert
+        = yield
