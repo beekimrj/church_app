@@ -59,4 +59,28 @@
   --shadow-large:  2px 4px 10px hsl(0 0% 0% / 0.1);
   --shadow-small:  1px 3px 6px hsl(0 0% 0% / 0.1);
 
+  --text: #050315;
+  --background: #fbfbfe;
+  --primary_color: #2f27ce;
+  --secondary_color: #dedcff;
+  --tertiary_color: #f1ddd9;
+  --accent: #433bff;
+  --font_family: 'Bricolage Grotesque';
+  --separator_color: #d9d9d9;
+
+
+  // sidebar variables
+  --sidebar_background_color: #1e1927; // #4a4453;
+  --sidebar_text_color: #97979e;
+  --sidebar_active_color: var(--background);
+  --sidebar_logo_text_color: #E783B0;
+
+  // Card container
+  --card_bg_color: #97979e;
+  --card_header_bg_color:  #1e1927;
+  --card_header_color: var(--background);
+  --card_show_details_bg_color: var(--text);
+
+  // button
+  --primary_button_txt_color: var(--background);
 }

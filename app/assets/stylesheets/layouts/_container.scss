@@ -1,15 +1,22 @@
 @use "../mixins/media";
 
 .container {
+  display: flex;
   width: 100%;
-  padding-right: var(--space-xs);
-  padding-left: var(--space-xs);
-  margin-left: auto;
-  margin-right: auto;
+  height: 100vh;
+  // padding-right: var(--space-xxxs);
+  // padding-left: var(--space-xxxs);
+  background-color: var(--background);
+  overflow-y: scroll;
+
+  main {
+    flex: 1;
+    padding: var(--space-xxxs);
+    overflow-y: auto;
+  }
 
   @include media.media(tabletAndUp) {
-    padding-right: var(--space-m);
-    padding-left: var(--space-m);
-    max-width: 60rem;
+    // padding-right: var(--space-xxs);
+    // padding-left: var(--space-xxs);
   }
 }

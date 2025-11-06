@@ -1,0 +1,67 @@
+.sidebar_container {
+  box-shadow: var(--shadow-large);
+  padding: var(--space-m) var(--space-m);
+  background-color: var(--sidebar_background_color);
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden;
+  height: 100%;
+
+  .brand_container {
+    height: 5rem;
+    width: 100%;
+
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__name {
+        font-weight: bold;
+        margin-left: auto;
+        margin-right: var(--space-s);
+        color: var(--sidebar_logo_text_color);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      &__logo {
+        width: 3rem;
+      }
+    }
+  }
+
+  .menu_items {
+    display: flex;
+    flex-direction: column;
+
+    .menu_item {
+      margin-top: 1rem;
+      color: var(--sidebar_text_color);
+      text-decoration: none;
+      transition: transform 0.2s ease, color 0.2s ease; // smooth effect
+      transform-origin: left center;
+      &:hover,
+      &.active {
+        color: var(--sidebar_active_color);
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .menu_buttons {
+    display: flex;
+    flex-direction: column;
+    // text-decoration: none;
+    .menu_item {
+      transition: transform 0.2s ease, color 0.2s ease; // smooth effect
+      transform-origin: left center;
+      &:hover,
+      &.active {
+        color: var(--sidebar_active_color);
+        transform: scale(1.2);
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
 // Configuration
 @use "config/variables";
 @use "config/reset";
-@use 'config/animations';
+@use "config/animations";
 
 // Components
 @use "components/btn";
@@ -12,16 +12,15 @@
 @use "components/form";
 @use "components/visually_hidden";
 @use "components/turbo_progress_bar";
-@use 'components/navbar';
-@use 'components/flash';
-@use 'components/empty_state';
+@use "components/navbar";
+@use "components/flash";
+@use "components/sidebar";
 
 // Layouts
 @use "layouts/container";
 @use "layouts/header";
 @use "layouts/home";
 @use "layouts/page";
-
 
 // Utilities
 @use "utilities/margins";
