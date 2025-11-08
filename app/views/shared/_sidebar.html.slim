@@ -6,11 +6,11 @@ sidebar.sidebar_container
         span.brand__name
           | Church of Pentecost
     .menu_items
-      = menu_item(:church_services, :index, 'Services', nil,  {icon: 'fa-solid fa-church'})
-      = menu_item(:members, :index, 'Members', nil, {icon: 'fa-solid fa-user-group'})
-      = menu_item(:pages, :home, 'Communications', root_path, {icon: 'fa-solid fa-message'})
-      = menu_item(:pages, :home, 'Settings', root_path, {icon: 'fa-solid fa-wrench'})
+      = menu_item(:church_services, :index, 'Services', nil,  {icon: 'church'})
+      = menu_item(:members, :index, 'Members', nil, {icon: 'users'})
+      = menu_item(:pages, :home, 'Communications', root_path, {icon: 'message'})
+      = menu_item(:pages, :home, 'Settings', root_path, {icon: 'settings'})
   .sidebar__bottom
     .menu_buttons
-      = menu_item(:pages, :home, 'My Profile', root_path, {icon: 'fa-solid fa-user', class: 'profile'})
-      = menu_item(:pages, :home, 'Log Out', root_path, {icon: 'fa-solid fa-right-from-bracket', class: 'logout'})
+      = menu_item(:pages, :home, 'My Profile', root_path, {icon: 'user', class: 'profile'})
+      = menu_item(:pages, :home, 'Log Out', root_path, {icon: 'logout', class: 'logout'})

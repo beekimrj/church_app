@@ -1,11 +1,17 @@
-p style="color: green" = notice
-
-h1 Members
-
-#members
-  - @members.each do |member|
-    == render member
-    p
-      = link_to "Show this member", member
-
-= link_to "New member", new_member_path
+.page-header
+    h1 Members
+.table-container
+  table
+    thead
+      tr
+        th Code
+        th Name
+        th Email
+        th Phone number
+        th Actions
+    tbody
+      - @members.each do |member|
+        = render member
+= link_to new_member_path, class: "btn btn--primary" do
+  i.fas.fa-plus-circle
+  |  Add New Member
