@@ -1,14 +1,16 @@
 .sidebar_container {
   box-shadow: var(--shadow-large);
-  padding: var(--space-m) var(--space-m);
-  background-color: var(--sidebar_background_color);
+  padding: var(--space-m);
+  background-color: var(--sidebar-background);
   width: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow-x: hidden;
   height: 100%;
+  font-family: var(--font-family-sans);
 
+  /* ---------- Brand Section ---------- */
   .brand_container {
     height: 5rem;
     width: 100%;
@@ -17,50 +19,59 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      &__name {
-        font-weight: bold;
-        margin-left: auto;
-        margin-right: var(--space-s);
-        color: var(--sidebar_logo_text_color);
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
+      gap: var(--space-s);
 
       &__logo {
         width: 3rem;
       }
-    }
-  }
 
-  .menu_items {
-    display: flex;
-    flex-direction: column;
-
-    .menu_item {
-      margin-top: 1rem;
-      color: var(--sidebar_text_color);
-      text-decoration: none;
-      transition: transform 0.2s ease, color 0.2s ease; // smooth effect
-      transform-origin: left center;
-      &:hover,
-      &.active {
-        color: var(--sidebar_active_color);
-        transform: scale(1.2);
+      &__name {
+        font-weight: bold;
+        color: var(--sidebar-logo-text);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
     }
   }
 
+  /* ---------- Menu Items ---------- */
+  .menu_items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+
+    .menu_item {
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: var(--font-size-m);
+      transition: transform 0.2s ease, color 0.2s ease;
+      transform-origin: left center;
+
+      &:hover,
+      &.active {
+        color: var(--sidebar-active-text);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  /* ---------- Bottom Buttons ---------- */
   .menu_buttons {
     display: flex;
     flex-direction: column;
-    // text-decoration: none;
+    gap: var(--space-xs);
+
     .menu_item {
-      transition: transform 0.2s ease, color 0.2s ease; // smooth effect
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: var(--font-size-m);
+      transition: transform 0.2s ease, color 0.2s ease;
       transform-origin: left center;
+
       &:hover,
       &.active {
-        color: var(--sidebar_active_color);
-        transform: scale(1.2);
+        color: var(--sidebar-active-text);
+        transform: scale(1.1);
       }
     }
   }

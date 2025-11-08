@@ -15,16 +15,13 @@ module ApplicationHelper
 
     menu_classes = [ classes_for_active_menu(controller, action), "menu_item", options[:class] ].compact.join(" ")
 
-    # content_tag(:span, id: "menu_#{menu_text.downcase.underscore}", class: "menu_item") do
-      link_to(url || link_params, class: menu_classes) do
-        menu_icon_tag(options[:icon]) + menu_text
-      end
-    # end
+    link_to(url || link_params, class: menu_classes) do
+      create_icon(options[:icon]) + menu_text
+    end
   end
 
-  def menu_icon_tag(icon_class)
-    return "" if icon_class.blank?
-
-    content_tag(:i, "", class: "#{icon_class} menu_icon")
+  def create_icon(icon_name)
+    icon_class = FontIconMapper.find(icon_name)
+    tag.i(class: icon_class)
   end
 end

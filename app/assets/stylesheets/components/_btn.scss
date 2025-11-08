@@ -1,5 +1,14 @@
+.btn-groups {
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
+  .btn {
+    padding: 5px;
+  }
+}
+
 .btn {
-  display: inline-block;
+  // display: inline-block;
   padding: var(--space-xxs) var(--space-m);
   border-radius: var(--border-radius);
   background-origin: border-box; //Invisible borders with linear gradients
@@ -45,8 +54,8 @@
   }
 
   &--light {
-    color: var(--color-dark);
-    background-color: var(--color-light);
+    color: var(--color-white);
+    background-color: transparent;
 
     &:hover,
     &:focus,
@@ -58,7 +67,7 @@
   }
 
   &--dark {
-    color: var(--color-white);
+    color: var(--color-dark);
     border-color: var(--color-dark);
     background-color: var(--color-dark);
 

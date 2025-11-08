@@ -1,28 +1,15 @@
-div id="#{dom_id member}"
-  p
-    strong First name:
-    =< member.first_name
-  p
-    strong Last name:
-    =< member.last_name
-  p
-    strong Phone number:
-    =< member.phone_number
-  p
-    strong Email:
-    =< member.email
-  p
-    strong Date of birth:
-    =< member.date_of_birth
-  p
-    strong Code:
-    =< member.code
-  p
-    strong Gender:
-    =< member.gender
-  p
-    strong Marital status:
-    =< member.marital_status
-  p
-    strong Baptism date:
-    =< member.baptism_date
+tr id="#{dom_id member}"
+  td
+    =member.code
+  td
+    =member.full_name
+  td
+    =member.email
+  td
+    =member.phone_number
+  td
+    .btn-groups
+      =link_to root_path, class: "btn btn--light" do
+        =create_icon("show")
+      =link_to root_path, class: "btn btn--light" do
+        =create_icon("edit")
