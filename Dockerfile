@@ -96,10 +96,9 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client bash && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Rails environment setup
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
@@ -112,7 +111,6 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev node-gyp pkg-config python-is-python3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Install Node + Yarn
 ARG NODE_VERSION=20.5.0
 ARG YARN_VERSION=1.22.22
 ENV PATH=/usr/local/node/bin:$PATH
@@ -121,46 +119,41 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
 
-# Install Ruby gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
-# Install JS dependencies
 COPY package.json yarn.lock ./
 RUN yarn install --immutable
 
-# Copy app source
 COPY . .
 
-# Precompile bootsnap cache
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Precompile assets (dummy secret is fine for build)
 RUN SECRET_KEY_BASE=dummy ./bin/rails assets:precompile
 
-# Clean up
 RUN rm -rf node_modules
 
 # --- Final Stage ---
 FROM base
 
-# Copy build artifacts
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
-# ---- Load .env secret file if it exists ----
-# Render mounts secret files in /etc/secrets/
-# This ensures all vars in .env are exported into the environment
-ENV ENV_FILE="/etc/secrets/.env"
-RUN echo 'if [ -f "$ENV_FILE" ]; then export $(grep -v "^#" "$ENV_FILE" | xargs); fi' >> /rails/load_env.sh
-RUN echo 'exec "$@"' >> /rails/load_env.sh
-RUN chmod +x /rails/load_env.sh
+# Load .env file if exists (Render mounts it at /etc/secrets/.env)
+# Add proper shebang so Docker knows it’s a shell script
+RUN echo '#!/bin/bash' > /rails/load_env.sh && \
+    echo 'ENV_FILE="/etc/secrets/.env"' >> /rails/load_env.sh && \
+    echo 'if [ -f "$ENV_FILE" ]; then' >> /rails/load_env.sh && \
+    echo '  export $(grep -v "^#" "$ENV_FILE" | xargs)' >> /rails/load_env.sh && \
+    echo 'fi' >> /rails/load_env.sh && \
+    echo 'exec "$@"' >> /rails/load_env.sh && \
+    chmod +x /rails/load_env.sh
 
 ENTRYPOINT ["/rails/load_env.sh"]
 
-# ---- Rails setup ----
+# --- Security setup ---
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
@@ -168,5 +161,5 @@ USER 1000:1000
 
 EXPOSE 3000
 
-# Use PORT assigned by Render
+# Use Render’s dynamic PORT variable
 CMD ["bash", "-c", "./bin/rails server -b 0.0.0.0 -p ${PORT:-3000}"]
