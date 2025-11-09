@@ -1,28 +1,108 @@
 .form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
+  font-family: var(--font-family-sans);
+  color: var(--color-text);
+  width: 100%;
+  padding: var(--space-xl);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-large);
+  margin: var(--space-l) auto;
 
-  &__group {
-    flex: 1;
+  &-section {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-l);
+    border-bottom: 0.0625rem solid var(--color-separator); // 1px → rem
+
+    &__title {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-xl);
+      color: var(--color-primary);
+      margin-bottom: var(--space-m);
+    }
   }
 
-  &__input {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    padding: var(--space-xxs) var(--space-xs);
-    border: var(--border);
+  /* responsive grid for better layout use */
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(16rem, 1fr)
+    ); // 256px → 16rem
+    gap: var(--space-m) var(--space-l); // vertical, horizontal spacing
+  }
+
+  &-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    label {
+      font-weight: 600;
+      font-size: var(--font-size-s);
+      color: var(--color-dark);
+      text-transform: capitalize;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: var(--space-s) var(--space-m);
+      font-size: var(--font-size-m);
+      border: 0.0625rem solid var(--color-light);
+      border-radius: var(--border-radius);
+      background-color: var(--color-background);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 0.1875rem var(--color-primary-bg); // 3px → 0.1875rem
+        background-color: var(--color-white);
+      }
+    }
+
+    &--small {
+      max-width: 12rem; // ~192px, good for short fields like “Code”
+    }
+
+    .form-row__radios {
+  display: flex;
+  flex-wrap: wrap;   // allows multiple rows
+  gap: var(--space-m);
+  margin-top: var(--space-xs);
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xxs);
+    cursor: pointer;
+  }
+}
+
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-xl);
+
+    .btn-groups {
+      display: flex;
+      gap: var(--space-s);
+      flex-wrap: wrap;
+
+      .btn {
+        padding: 0.3125rem 1rem; // 5px 16px → rem
+      }
+    }
+  }
+
+  .form-errors {
+    margin-bottom: var(--space-l);
+    padding: var(--space-m);
     border-radius: var(--border-radius);
-    outline: none;
-    transition: box-shadow 250ms;
-
-    &:focus {
-      box-shadow: 0 0 0 2px var(--color-glint);
-    }
-
-    &--invalid {
-      border-color: var(--color-primary);
-    }
+    background-color: hsl(0, 100%, 97%);
+    color: hsl(0, 70%, 40%);
+    border: 0.0625rem solid hsl(0, 80%, 85%);
   }
 }

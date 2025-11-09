@@ -1,10 +1,7 @@
-h1 Editing member
+.page
+  .page-header
+    h1.page-header__title Edit member
+    p.page-header__subtitle Fill in the member details below
 
-== render "form", member: @member
-
-br
-
-div
-  => link_to "Show this member", @member
-  '|
-  =< link_to "Back to members", members_path
+  .page-content
+    = render "form", member: @member

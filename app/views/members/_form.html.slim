@@ -1,46 +1,64 @@
-= form_with(model: member) do |form|
+= form_with(model: member, class: "form") do |form|
   - if member.errors.any?
-    div style="color: red"
+    .form-errors
       h2 = "#{pluralize(member.errors.count, "error")} prohibited this member from being saved:"
       ul
         - member.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :first_name, style: "display: block"
-    = form.text_field :first_name
+  .form-section
+    h2.form-section__title Details
+    .form-grid
+      .form-row
+        = form.label :first_name
+        = form.text_field :first_name, placeholder: "First name"
+      .form-row
+        = form.label :last_name
+        = form.text_field :last_name, placeholder: "Last name"
+      .form-row
+        = form.label :email
+        = form.email_field :email, placeholder: "Email"
+      .form-row
+        = form.label :phone_number
+        = form.text_field :phone_number, placeholder: "Phone"
 
-  div
-    = form.label :last_name, style: "display: block"
-    = form.text_field :last_name
+  .form-section
+    h2.form-section__title Personal Info
+    .form-grid
+      .form-row
+        = form.label :date_of_birth
+        = form.date_field :date_of_birth
+      .form-row
+        label Gender
 
-  div
-    = form.label :phone_number, style: "display: block"
-    = form.text_field :phone_number
+        .form-row__radios
+          - Member.genders.each do |key,value|
+            label.radio-label
+              = form.radio_button :gender, value
+              = key.capitalize
+      /.form-row
+        = form.label :marital_status
+        = form.text_field :marital_status
+      .form-row
+        label Marital Status
 
-  div
-    = form.label :email, style: "display: block"
-    = form.text_field :email
+        .form-row__radios
+          - Member.marital_statuses.each do |key,value|
+            label.radio-label
+              = form.radio_button :marital_status, value
+              = key.capitalize
+      .form-row
+        = form.label :baptism_date
+        = form.date_field :baptism_date
 
-  div
-    = form.label :date_of_birth, style: "display: block"
-    = form.date_field :date_of_birth
+  .form-section
+    h2.form-section__title Internal
+    .form-grid
+      .form-row.form-row--small
+        = form.label :code, "Member Code"
+        = form.text_field :code
 
-  div
-    = form.label :code, style: "display: block"
-    = form.text_field :code
-
-  div
-    = form.label :gender, style: "display: block"
-    = form.text_field :gender
-
-  div
-    = form.label :marital_status, style: "display: block"
-    = form.text_field :marital_status
-
-  div
-    = form.label :baptism_date, style: "display: block"
-    = form.date_field :baptism_date
-
-  div
-    = form.submit
+  .form-actions
+    .btn-groups
+      = link_to "Cancel", members_path, class: "btn btn--secondary"
+      = form.submit "Save", class: "btn btn--primary"

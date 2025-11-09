@@ -17,6 +17,9 @@
 #
 
 class Member < ApplicationRecord
+  enum :gender, { male: "male", female: "female" }
+
+  enum :marital_status, { single: "single", married: "married", divorced: "divorced", widow: "widow", other: "other" }
   def full_name
     "#{first_name} #{last_name}"
   end
