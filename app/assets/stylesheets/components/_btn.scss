@@ -1,81 +1,129 @@
+/* ==============================
+   BUTTONS
+   ============================== */
+
 .btn-groups {
   display: flex;
-  // justify-content: space-around;
   align-items: center;
-  .btn {
-    padding: 5px;
-  }
+  justify-content: flex-end;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+  margin-top: var(--space-m);
 }
 
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-l);
+}
+
+/* ==============================
+   BASE BUTTON STYLE
+   ============================== */
 .btn {
-  // display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xxs);
   padding: var(--space-xxs) var(--space-m);
   border-radius: var(--border-radius);
-  background-origin: border-box; //Invisible borders with linear gradients
+  border: 0.125rem solid transparent;
+  background-origin: border-box;
   background-color: transparent;
-  border: solid 2px transparent;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-s);
   text-decoration: none;
   cursor: pointer;
   outline: none;
-  transition: filter 400ms, color 200ms;
+  transition:
+    background-color 0.25s ease,
+    filter 0.25s ease,
+    color 0.25s ease,
+    transform 0.15s ease;
 
   &:hover,
   &:focus,
-  &:focus-within,
   &:active {
-    transition: filter 250ms, color 200ms;
+    transform: translateY(-0.05rem);
   }
 
-  &--primary {
-    color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:active {
-      color: var(--color-white);
-      filter: saturate(1.4) brightness(115%);
-    }
+  &:focus-visible {
+    outline: 0.125rem solid var(--color-primary);
+    outline-offset: 0.125rem;
   }
 
-  &--secondary {
-    color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-secondary), var(--color-secondary-rotate));
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:active {
-      color: var(--color-white);
-      filter: saturate(1.2) brightness(110%);
-    }
+  &:disabled,
+  &[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
   }
+}
 
-  &--light {
-    color: var(--color-white);
-    background-color: transparent;
+/* ==============================
+   VARIANTS
+   ============================== */
 
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:active {
-      color: var(--color-dark);
-      filter: brightness(92%);
-    }
+.btn--primary {
+  color: var(--button-primary-text);
+  background-color: var(--button-primary-bg);
+  border-color: var(--button-primary-bg);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-primary-bg-hover);
   }
+}
 
-  &--dark {
-    color: var(--color-dark);
-    border-color: var(--color-dark);
-    background-color: var(--color-dark);
+.btn--secondary {
+  color: var(--button-secondary-text);
+  background-color: var(--button-secondary-bg);
+  border-color: var(--button-secondary-bg);
 
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:active {
-      color: var(--color-white);
-    }
+  &:hover,
+  &:focus {
+    background-color: var(--button-secondary-bg-hover);
   }
+}
+
+.btn--light {
+  color: var(--button-light-text);
+  background-color: var(--button-light-bg);
+  border-color: var(--button-light-bg);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-light-bg-hover);
+  }
+}
+
+.btn--dark {
+  color: var(--button-dark-text);
+  background-color: var(--button-dark-bg);
+  border-color: var(--button-dark-bg);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-dark-bg-hover);
+  }
+}
+
+.btn--danger {
+  color: var(--button-danger-text);
+  background-color: var(--button-danger-bg);
+  border-color: var(--button-danger-bg);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-danger-bg-hover);
+  }
+}
+
+/* ==============================
+   ICON SUPPORT
+   ============================== */
+.btn i {
+  font-size: 1rem;
+  line-height: 1;
 }

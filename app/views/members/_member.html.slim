@@ -9,7 +9,7 @@ tr id="#{dom_id member}"
     =member.phone_number
   td
     .btn-groups
-      =link_to root_path, class: "btn btn--light" do
+      =link_to member_path(member), class: "btn btn--light" do
         =create_icon("show")
-      =link_to root_path, class: "btn btn--light" do
+      =link_to edit_member_path(member), class: "btn btn--light" do
         =create_icon("edit")
