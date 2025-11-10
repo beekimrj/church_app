@@ -1,10 +1,39 @@
-p style="color: green" = notice
+.record-show
+  .record-show__header
+    h1 = @member.full_name
+    .btn-groups
+      = link_to "Back", members_path, class: "btn btn--secondary"
+      = link_to "Edit", edit_member_path(@member), class: "btn btn--primary"
+      = link_to "Delete",
+          member_path(@member),
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this member?" },
+          class: "btn btn--danger"
 
-== render @member
+  .record-show__grid
+    .record-show__field
+      span.record-show__field-label Code
+      span.record-show__field-value = @member.code.presence || "-"
 
-div
-  => link_to "Edit this member", edit_member_path(@member)
-  '|
-  =< link_to "Back to members", members_path
+    .record-show__field
+      span.record-show__field-label Email
+      span.record-show__field-value = @member.email.presence || "-"
 
-  = button_to "Destroy this member", @member, method: :delete
+    .record-show__field
+      span.record-show__field-label Phone Number
+      span.record-show__field-value = @member.phone_number.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Gender
+      span.record-show__field-value = @member.gender&.humanize || "-"
+
+    .record-show__field
+      span.record-show__field-label Marital Status
+      span.record-show__field-value = @member.marital_status&.humanize || "-"
+
+    .record-show__field
+      span.record-show__field-label Date of Birth
+      span.record-show__field-value = @member.date_of_birth&.strftime("%B %d, %Y") || "-"
+
+    .record-show__field
+      span.record-show__field-label Baptism Date
+      span.record-show__field-value = @member.baptism_date&.strftime("%B %d, %Y") || "-"
