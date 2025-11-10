@@ -8,7 +8,8 @@ class FontIconMapper
     "logout" => "fa-solid fa-right-from-bracket",
     "question" => "fa-solid fa-circle-question",
     "show" => "fa-solid fa-eye",
-    "edit" => "fa-solid fa-pen-to-square"
+    "edit" => "fa-solid fa-pen-to-square",
+    "add" => "fa-solid fa-square-plus"
   }
 
   FALLBACK_ICON = ICON_MAPPER["question"]

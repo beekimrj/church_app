@@ -1,15 +1,23 @@
-.columns {
-  display: flex;
-  justify-content: space-between;
-}
-
-.row {
+@use "../mixins/media";
+/* ==============================
+   PAGE HEADER
+   ============================== */
+.page-header {
   display: flex;
   flex-direction: column;
-}
+  gap: var(--space-s);
+  margin-bottom: var(--space-l);
 
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  h1 {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xxl);
+    color: var(--color-primary);
+    margin: 0;
+    text-align: center;
+  }
+
+  @include media.media(tabletAndUp) {
+    flex-direction: row;
+    text-align: left;
+  }
 }
