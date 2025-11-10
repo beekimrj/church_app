@@ -2,20 +2,19 @@
 
 .container {
   display: flex;
+  flex-direction: column; // Mobile first: stack vertically
   width: 100%;
-  height: 100vh;
-  // padding-right: var(--space-xxxs);
-  // padding-left: var(--space-xxxs);
+  height: auto;
   background-color: var(--background);
-  overflow-y: scroll;
+  overflow-y: auto;
 
   main {
     flex: 1;
-    padding: var(--space-xxxs);
+    padding: var(--space-m);
     overflow-y: auto;
 
     .page {
-      padding: var(--space-xl);
+      padding: var(--space-l);
 
       .page-header {
         margin-bottom: var(--space-xl);
@@ -24,7 +23,7 @@
 
         &__title {
           font-family: var(--font-family-display);
-          font-size: var(--font-size-xxl);
+          font-size: var(--font-size-xl);
           color: var(--color-primary);
           margin: 0;
         }
@@ -44,8 +43,16 @@
     }
   }
 
+  /* Tablet and up (use your mixin) */
   @include media.media(tabletAndUp) {
-    // padding-right: var(--space-xxs);
-    // padding-left: var(--space-xxs);
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+
+    main {
+      flex: 1;
+      padding: var(--space-xl);
+      max-width: calc(100% - var(--sidebar-width));
+    }
   }
 }

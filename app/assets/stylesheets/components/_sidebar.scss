@@ -1,77 +1,116 @@
+@use "../mixins/media";
+
+/* ==============================
+   SIDEBAR (Mobile First)
+   ============================== */
 .sidebar_container {
-  box-shadow: var(--shadow-large);
-  padding: var(--space-m);
+  // Mobile defaults
   background-color: var(--sidebar-background);
-  width: 15rem;
+  color: var(--sidebar-text);
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow-x: hidden;
-  height: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-s);
+  gap: var(--space-xs);
+  overflow-x: auto;
   font-family: var(--font-family-sans);
+  z-index: 1000;
+  transition: all 0.3s ease;
 
-  /* ---------- Brand Section ---------- */
-  .brand_container {
-    height: 5rem;
+  .sidebar__top, .sidebar__bottom {
     width: 100%;
+  }
 
+  .brand_container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: 0;
+    width: 100%;
     .brand {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: var(--space-s);
-
-      &__logo {
-        width: 3rem;
+      width: 100%;
+      .brand__logo { width: 2rem; height: 2rem; }
+      .brand__name {
+        display: none;
+        }
       }
-
-      &__name {
-        font-weight: bold;
-        color: var(--sidebar-logo-text);
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-    }
   }
 
-  /* ---------- Menu Items ---------- */
-  .menu_items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-
-    .menu_item {
-      color: var(--sidebar-text);
-      text-decoration: none;
-      font-size: var(--font-size-m);
-      transition: transform 0.2s ease, color 0.2s ease;
-      transform-origin: left center;
-
-      &:hover,
-      &.active {
-        color: var(--sidebar-active-text);
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  /* ---------- Bottom Buttons ---------- */
+  .menu_items,
   .menu_buttons {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: var(--space-xs);
+    padding-top: 0;
+    margin-top: 0;
+    width: 100%;
 
     .menu_item {
+      padding: var(--space-xxs) var(--space-xs);
+      white-space: nowrap;
+      border-radius: var(--border-radius);
+      transition: background-color 0.25s ease, color 0.25s ease;
       color: var(--sidebar-text);
       text-decoration: none;
-      font-size: var(--font-size-m);
-      transition: transform 0.2s ease, color 0.2s ease;
-      transform-origin: left center;
+      width: 100%;
+      text-align: center;
 
-      &:hover,
-      &.active {
+      &:hover {
         color: var(--sidebar-active-text);
-        transform: scale(1.1);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+
+  /* ---------- Tablet / Desktop Overrides ---------- */
+  @include media.media(tabletAndUp) {
+    width: var(--sidebar-width);
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: var(--space-l) var(--space-m);
+    overflow-x: hidden;
+
+    .brand_container {
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+
+      margin-bottom: var(--space-l);
+      .brand {
+      .brand__logo { width: 3rem; height: 3rem; }
+      .brand__name {
+        display: block;
+        font-size: var(--font-size-l);
+        color: var(--color-white);
+      }
+
+      }
+    }
+
+    .menu_items,
+    .menu_buttons {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      width: 100%;
+
+      .menu_item {
+        padding: var(--space-s) var(--space-m);
+        text-align: left;
       }
     }
   }
