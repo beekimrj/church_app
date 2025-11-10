@@ -9,7 +9,9 @@ class FontIconMapper
     "question" => "fa-solid fa-circle-question",
     "show" => "fa-solid fa-eye",
     "edit" => "fa-solid fa-pen-to-square",
-    "add" => "fa-solid fa-square-plus"
+    "add" => "fa-solid fa-square-plus",
+    "clipboard" => "fa-solid fa-clipboard-user",
+    "calendar" => "fa-solid fa-calendar-days"
   }
 
   FALLBACK_ICON = ICON_MAPPER["question"]
