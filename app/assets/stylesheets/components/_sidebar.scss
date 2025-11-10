@@ -21,7 +21,8 @@
   z-index: 1000;
   transition: all 0.3s ease;
 
-  .sidebar__top, .sidebar__bottom {
+  .sidebar__top,
+  .sidebar__bottom {
     width: 100%;
   }
 
@@ -36,11 +37,14 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      .brand__logo { width: 2rem; height: 2rem; }
+      .brand__logo {
+        width: 2rem;
+        height: 2rem;
+      }
       .brand__name {
         display: none;
-        }
       }
+    }
   }
 
   .menu_items,
@@ -63,9 +67,13 @@
       color: var(--sidebar-text);
       text-decoration: none;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
 
-      &:hover {
+      &:hover,
+      &.active {
         color: var(--sidebar-active-text);
         background-color: rgba(255, 255, 255, 0.05);
       }
@@ -89,13 +97,15 @@
 
       margin-bottom: var(--space-l);
       .brand {
-      .brand__logo { width: 3rem; height: 3rem; }
-      .brand__name {
-        display: block;
-        font-size: var(--font-size-l);
-        color: var(--color-white);
-      }
-
+        .brand__logo {
+          width: 3rem;
+          height: 3rem;
+        }
+        .brand__name {
+          display: block;
+          font-size: var(--font-size-l);
+          color: var(--color-white);
+        }
       }
     }
 
@@ -110,7 +120,11 @@
 
       .menu_item {
         padding: var(--space-s) var(--space-m);
-        text-align: left;
+        justify-content: flex-start;
+        &:hover,
+        &.active {
+          transform: scale(1.1);
+        }
       }
     }
   }
