@@ -1,5 +1,8 @@
 .page-header
     h1 Members
+    =link_to new_member_path, class: "btn btn--primary" do
+        =create_icon("add")
+        |  Add New
 .table-container
   table
     thead
@@ -10,8 +13,5 @@
         th Phone number
         th Actions
     tbody
-      - @members.each do |member|
-        = render member
-= link_to new_member_path, class: "btn btn--primary" do
-  i.fas.fa-plus-circle
-  |  Add New Member
+      -@members.each do |member|
+        =render member

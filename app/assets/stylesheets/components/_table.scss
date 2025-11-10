@@ -1,6 +1,12 @@
+@use "../mixins/media";
+
+/* ==============================
+   TABLE CONTAINER
+   ============================== */
 .table-container {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--border-radius);
   padding: var(--space-s);
   box-shadow: var(--shadow-small);
@@ -44,5 +50,60 @@
     tr:last-child td {
       border-bottom: none;
     }
+
+    /* Action buttons */
+    td .btn-groups {
+      display: flex;
+      gap: var(--space-xxs);
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .btn {
+        font-size: var(--font-size-xs);
+        padding: var(--space-xxs) var(--space-xs);
+      }
+    }
   }
+}
+
+/* ==============================
+   TABLET AND UP
+   ============================== */
+@include media.media(tabletAndUp) {
+  .table-container {
+    table {
+      th,
+      td {
+        padding: var(--space-s) var(--space-m);
+        font-size: var(--font-size-s);
+      }
+
+      td .btn-groups {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .page-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      text-align: left;
+      font-size: var(--font-size-xxl);
+    }
+
+    .btn-groups {
+      justify-content: flex-end;
+    }
+  }
+}
+
+/* ==============================
+   BUTTON FOCUS
+   ============================== */
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
