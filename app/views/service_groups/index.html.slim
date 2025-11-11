@@ -1,11 +1,16 @@
-p style="color: green" = notice
-
-h1 Service groups
-
-#service_groups
-  - @service_groups.each do |service_group|
-    == render service_group
-    p
-      = link_to "Show this service group", service_group
-
-= link_to "New service group", new_service_group_path
+.page-header
+    h1 Service groups
+    =link_to new_service_group_path, class: "btn btn--primary" do
+        =create_icon("add")
+        |  Add New
+.table-container
+  table
+    thead
+      tr
+        th Code
+        th Name
+        th Status
+        th Actions
+    tbody
+      -@service_groups.each do |service_group|
+        =render service_group
