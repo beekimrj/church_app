@@ -1,0 +1,12 @@
+.tabs
+  = link_to root_path, class: "tab #{'active'}" do
+    = create_icon("qr_code")
+    |  Details
+
+  = link_to root_path, class: "tab #{'active' if current_page?(root_path)}" do
+    = create_icon("users")
+    |  Members
+
+  = link_to root_path, class: "tab #{'active' if current_page?(root_path)}" do
+    = create_icon("calendar")
+    |  Service Groups
