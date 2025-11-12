@@ -1,3 +1,5 @@
+@use "../mixins/media";
+
 .record-show {
   background-color: var(--color-white);
   border-radius: var(--border-radius);
@@ -9,12 +11,18 @@
   // max-width: calc(100% - 260px); // adjust for sidebar width
 
   .record-show__header {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // border-bottom: 1px solid var(--color-separator);
+    // margin-bottom: var(--space-l);
+    // padding-bottom: var(--space-s);
+
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--color-separator);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
     margin-bottom: var(--space-l);
-    padding-bottom: var(--space-s);
 
     h1 {
       font-family: var(--font-family-display);
@@ -59,5 +67,11 @@
       padding: var(--space-s);
       border-radius: var(--border-radius);
     }
+  }
+
+  @include media.media(tabletAndUp) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 }

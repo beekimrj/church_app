@@ -1,0 +1,43 @@
+@use "../mixins/media";
+
+.tabs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--space-xs);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-xs);
+  box-shadow: var(--shadow-small);
+
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-s);
+    padding: var(--space-s) var(--space-m);
+    color: var(--color-text);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-hover-bg);
+      color: var(--color-primary);
+    }
+
+    &.active {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      font-weight: 600;
+    }
+  }
+  @include media.media(tabletAndUp) {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--space-s);
+  }
+}
