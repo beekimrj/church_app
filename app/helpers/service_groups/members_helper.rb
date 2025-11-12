@@ -1,0 +1,2 @@
+module ServiceGroups::MembersHelper
+end

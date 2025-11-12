@@ -1,12 +1,10 @@
 module ApplicationHelper
   def classes_for_active_menu(controller, action)
-    return unless current_page?(controller:, action:)
-
-    "active"
+    "active" if controller_path.start_with?(controller.to_s)
   end
 
   def menu_item(controller, action, menu_text = nil, url = nil, options = {})
-    link_params = { controller:, action: }
+    link_params = { controller: "/#{controller}", action: action }
     menu_text ||= if action.to_s.downcase == "index"
                     controller.to_s.titleize
     else

@@ -24,25 +24,25 @@
      ============================== */
 
   /* Text & background */
-  --color-text: hsl(240, 64%, 5%);        /* #050315 */
+  --color-text: hsl(240, 64%, 5%); /* #050315 */
   --color-background: hsl(240, 67%, 98%); /* #fbfbfe */
   --color-white: hsl(0, 0%, 100%);
   --color-light: hsl(0, 6%, 93%);
   --color-dark: var(--color-text);
 
   /* Brand palette */
-  --color-primary: hsl(245, 68%, 48%);          /* #2f27ce */
+  --color-primary: hsl(245, 68%, 48%); /* #2f27ce */
   --color-primary-rotate: hsl(245, 68%, 56%);
   --color-primary-bg: hsl(245, 68%, 92%);
-  --color-secondary: hsl(245, 57%, 91%);        /* #dedcff */
-  --color-tertiary: hsl(11, 59%, 89%);          /* #f1ddd9 */
-  --color-accent: hsl(245, 100%, 63%);          /* #433bff */
-  --color-separator: hsl(0, 0%, 85%);           /* #d9d9d9 */
+  --color-secondary: hsl(245, 57%, 91%); /* #dedcff */
+  --color-tertiary: hsl(11, 59%, 89%); /* #f1ddd9 */
+  --color-accent: hsl(245, 100%, 63%); /* #433bff */
+  --color-separator: hsl(0, 0%, 85%); /* #d9d9d9 */
 
   /* Semantic colors for UI states */
-  --color-success: hsl(145, 63%, 42%);          /* Green */
-  --color-warning: hsl(36, 92%, 54%);           /* Amber */
-  --color-danger: hsl(0, 75%, 55%);             /* Red tone */
+  --color-success: hsl(145, 63%, 42%); /* Green */
+  --color-warning: hsl(36, 92%, 54%); /* Amber */
+  --color-danger: hsl(0, 75%, 55%); /* Red tone */
   --color-danger-light: hsl(0, 75%, 63%);
 
   /* ==============================
@@ -77,15 +77,15 @@
   --sidebar-width: 16rem;
 
   /* ==============================
-     TABLE COLORS
-     ============================== */
-  --table-bg: #2c283c;
-  --table-border: #3a344d;
-  --table-header-bg: #3b3452;
-  --table-header-text: #ffffff;
-  --table-row-text: #d1cce0;
-  --table-row-alt-bg: #342e4b;
-  --table-row-hover-bg: #45405f;
+   TABLE COLORS (light theme)
+   ============================== */
+  --table-bg: var(--color-white);
+  --table-border: var(--color-separator);
+  --table-header-bg: var(--color-primary-bg);
+  --table-header-text: var(--color-primary);
+  --table-row-text: var(--color-text);
+  --table-row-alt-bg: var(--color-background);
+  --table-row-hover-bg: hsl(245, 68%, 95%);
 
   /* ==============================
      CARD COLORS

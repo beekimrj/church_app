@@ -16,7 +16,7 @@
     .record-show__field
       span.record-show__field-label Status
       span.record-show__field-value = @service_group.status.presence || "-"
-  .btn-groups
+  .btn-groups.btn-groups__right
     = link_to "Back", service_groups_path, class: "btn btn--secondary"
     = link_to "Edit", edit_service_group_path(@service_group), class: "btn btn--primary"
     = link_to "Delete",

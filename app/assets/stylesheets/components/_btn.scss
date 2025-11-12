@@ -5,10 +5,13 @@
 .btn-groups {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   gap: var(--space-s);
   flex-wrap: wrap;
-  margin-top: var(--space-m);
+  // margin-top: var(--space-m);
+  &__right {
+    justify-content: flex-end;
+  }
 }
 
 .form-actions {

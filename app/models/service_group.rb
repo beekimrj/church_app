@@ -11,4 +11,6 @@
 #
 
 class ServiceGroup < ApplicationRecord
+  has_many :service_group_members
+  has_many :members, through: :service_group_members
 end
