@@ -12,35 +12,6 @@
     flex: 1;
     padding: var(--space-m);
     overflow-y: auto;
-
-    .page {
-      padding: var(--space-l);
-
-      .page-header {
-        margin-bottom: var(--space-xl);
-        padding-bottom: var(--space-m);
-        border-bottom: 0.0625rem solid var(--color-separator);
-
-        &__title {
-          font-family: var(--font-family-display);
-          font-size: var(--font-size-xl);
-          color: var(--color-primary);
-          margin: 0;
-        }
-
-        &__subtitle {
-          font-family: var(--font-family-sans);
-          font-size: var(--font-size-m);
-          color: var(--color-dark);
-          margin-top: var(--space-xxs);
-        }
-      }
-
-      .page-content {
-        width: 100%;
-        margin-top: var(--space-l);
-      }
-    }
   }
 
   /* Tablet and up (use your mixin) */

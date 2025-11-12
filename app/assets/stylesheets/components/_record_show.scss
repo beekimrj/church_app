@@ -1,5 +1,8 @@
 @use "../mixins/media";
 
+/* ==============================
+   RECORD SHOW (Show Page)
+   ============================== */
 .record-show {
   background-color: var(--color-white);
   border-radius: var(--border-radius);
@@ -8,16 +11,8 @@
   color: var(--color-text);
   margin: var(--space-l) auto;
   width: 100%;
-  // max-width: calc(100% - 260px); // adjust for sidebar width
 
   .record-show__header {
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // border-bottom: 1px solid var(--color-separator);
-    // margin-bottom: var(--space-l);
-    // padding-bottom: var(--space-s);
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -28,10 +23,12 @@
       font-family: var(--font-family-display);
       font-size: var(--font-size-xl);
       color: var(--color-primary);
+      margin: 0;
     }
 
     .record-show__actions {
       display: flex;
+      width: 100%;
       gap: var(--space-s);
 
       a {
@@ -69,9 +66,20 @@
     }
   }
 
+  /* ---------- Tablet / Desktop Overrides ---------- */
   @include media.media(tabletAndUp) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    .record-show__header {
+      // flex-direction: row;
+      // align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        font-size: var(--font-size-xxl);
+      }
+
+      .record-show__actions {
+        justify-content: flex-end;
+      }
+    }
   }
 }

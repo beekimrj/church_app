@@ -1,0 +1,17 @@
+.record-show
+  .record-show__header
+    .record-show__title
+      h1 = @service_group.name
+    = render "service_groups/tabs"
+  .table-container
+    table
+      thead
+        tr
+          th Code
+          th Name
+          th Email
+          th Phone number
+          th Actions
+      tbody
+        -@members.each do |member|
+          =render "members/member", member: member
