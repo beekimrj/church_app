@@ -5,9 +5,9 @@
     = render "service_groups/tabs", active_tab: "members"
   =turbo_frame_tag dom_id(@service_group, :members)
     .record-show__actions
-      = link_to manage_members_service_group_members_path(@service_group), class: "btn btn--primary" do
-        = create_icon("add")
-        |  Add/Remove Members
+      = link_to service_group_members_path(@service_group), class: "btn btn--primary" do
+        = create_icon("clipboard")
+        |  List Members
     .table-container
       table
         thead
@@ -19,4 +19,4 @@
             th Actions
         tbody
           -@members.each do |member|
-            =render "members/member", member: member
+            =render "service_groups/members/manage_member_form", member: member, service_group_member_ids: @service_group_member_ids, service_group: @service_group

@@ -25,15 +25,15 @@
       color: var(--color-primary);
       margin: 0;
     }
+  }
 
-    .record-show__actions {
-      display: flex;
-      width: 100%;
-      gap: var(--space-s);
+  .record-show__actions {
+    display: flex;
+    width: 100%;
+    gap: var(--space-s);
 
-      a {
-        text-decoration: none;
-      }
+    a {
+      text-decoration: none;
     }
   }
 
@@ -76,10 +76,9 @@
       h1 {
         font-size: var(--font-size-xxl);
       }
-
-      .record-show__actions {
-        justify-content: flex-end;
-      }
+    }
+    .record-show__actions {
+      justify-content: flex-end;
     }
   }
 }
