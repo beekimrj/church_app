@@ -3,7 +3,7 @@
     .record-show__title
       h1 = @service_group.name
 
-    = render "tabs"
+    = render "tabs", active_tab: "details"
   .record-show__grid
     .record-show__field
       span.record-show__field-label Code

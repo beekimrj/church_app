@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   resources :events
   resources :church_services
   resources :service_groups do
-    resources :members, module: :service_groups, only: [:index]
+    resources :members, module: :service_groups, only: %i[index] do
+      collection do
+        get :manage_members
+        post :toggle_membership
+      end
+    end
     # resources :events, module: :service_groups, only: [:index]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
