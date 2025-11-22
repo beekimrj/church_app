@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         post :toggle_membership
       end
     end
+
+    resources :church_services, module: :service_groups
     # resources :events, module: :service_groups, only: [:index]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

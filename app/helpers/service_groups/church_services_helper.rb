@@ -1,0 +1,2 @@
+module ServiceGroups::ChurchServicesHelper
+end

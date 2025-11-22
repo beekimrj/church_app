@@ -7,6 +7,6 @@
     = create_icon("users")
     |  Members
 
-  = link_to root_path, class: "tab #{'active' if current_page?(root_path)}" do
+  = link_to service_group_church_services_path(@service_group), class: "tab #{'active' if active_tab == 'church_services'}" do
     = create_icon("calendar")
-    |  Service Groups
+    | Church Services
