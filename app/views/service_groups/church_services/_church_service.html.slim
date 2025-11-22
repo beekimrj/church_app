@@ -1,0 +1,13 @@
+tr id="#{dom_id church_service}"
+  td
+    =church_service.code
+  td
+    =church_service.name
+  td
+    =church_service.status
+  td
+    .btn-groups
+      =link_to service_group_church_service_path(service_group, church_service), class: "btn btn--light" do
+        =create_icon("show")
+      =link_to edit_service_group_church_service_path(service_group, church_service), class: "btn btn--light" do
+        =create_icon("edit")
