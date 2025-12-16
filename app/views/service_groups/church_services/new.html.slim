@@ -1,8 +1,0 @@
-.page
-  .page-header
-    h1.page-header__title New Church Service
-    p.page-header__subtitle Fill in the Church Service details below
-
-  .page-content
-    =turbo_frame_tag dom_id(@service_group, :church_services)
-      = render "form", church_service: @church_service, service_group: @service_group

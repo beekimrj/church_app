@@ -53,6 +53,6 @@ class ChurchServicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def church_service_params
-      params.expect(church_service: [ :name, :status, :service_group_id, :code ])
+      params.expect(church_service: [ :name, :status, :code ])
     end
 end

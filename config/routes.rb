@@ -2,17 +2,6 @@ Rails.application.routes.draw do
   resources :members
   resources :events
   resources :church_services
-  resources :service_groups do
-    resources :members, module: :service_groups, only: %i[index] do
-      collection do
-        get :manage_members
-        post :toggle_membership
-      end
-    end
-
-    resources :church_services, module: :service_groups
-    # resources :events, module: :service_groups, only: [:index]
-  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

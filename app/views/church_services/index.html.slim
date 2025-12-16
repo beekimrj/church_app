@@ -1,11 +1,18 @@
-p style="color: green" = notice
-
-h1 Church services
-
-#church_services
-  - @church_services.each do |church_service|
-    == render church_service
-    p
-      = link_to "Show this church service", church_service
-
-= link_to "New church service", new_church_service_path
+.record-show
+  .record-show__header
+    .record-show__title
+  .record-show__actions
+    = link_to new_church_service_path, class: "btn btn--primary" do
+      = create_icon("add")
+      |  Add/Remove Service
+  .table-container
+    table
+      thead
+        tr
+          th Code
+          th Name
+          th Status
+          th Actions
+      tbody
+        -@church_services.each do |church_service|
+          =render "church_services/church_service", church_service: church_service

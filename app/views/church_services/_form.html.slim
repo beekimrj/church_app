@@ -1,26 +1,28 @@
-= form_with(model: church_service) do |form|
+= form_with(model: church_service, class: "form") do |form|
   - if church_service.errors.any?
-    div style="color: red"
+    .form-errors
       h2 = "#{pluralize(church_service.errors.count, "error")} prohibited this church_service from being saved:"
       ul
         - church_service.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :name, style: "display: block"
-    = form.text_field :name
+  .form-section
+    h2.form-section__title Details
+    .form-grid
+      .form-row
+        = form.label :name
+        = form.text_field :name, placeholder: "Name"
+      .form-row
+        label Status
 
-  div
-    = form.label :status, style: "display: block"
-    = form.text_field :status
+        .form-row__checkbox
+          = form.label :status, "Active", class: "checkbox-label"
+          = form.check_box :status
+      .form-row
+        = form.label :code
+        = form.text_field :code, placeholder: "Code"
 
-  div
-    = form.label :service_group_id, style: "display: block"
-    = form.text_field :service_group_id
-
-  div
-    = form.label :code, style: "display: block"
-    = form.text_field :code
-
-  div
-    = form.submit
+  .form-actions
+    .btn-groups
+      = link_to "Cancel", church_services_path, class: "btn btn--secondary"
+      = form.submit "Save", class: "btn btn--primary"

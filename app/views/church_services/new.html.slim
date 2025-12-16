@@ -1,8 +1,8 @@
-h1 New church service
+.page
+  .page-header
+    h1.page-header__title New Church Service
+    p.page-header__subtitle Fill in the Church Service details below
 
-== render "form", church_service: @church_service
-
-br
-
-div
-  = link_to "Back to church services", church_services_path
+  .page-content
+    =turbo_frame_tag dom_id(@church_service)
+      = render "form", church_service: @church_service
