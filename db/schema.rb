@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_12_122840) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_16_113212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "church_services", force: :cascade do |t|
     t.string "name"
     t.string "status"
-    t.bigint "service_group_id", null: false
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["service_group_id"], name: "index_church_services_on_service_group_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -67,7 +65,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_12_122840) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "church_services", "service_groups"
   add_foreign_key "events", "church_services"
   add_foreign_key "service_group_members", "members"
   add_foreign_key "service_group_members", "service_groups"
