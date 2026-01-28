@@ -4,5 +4,5 @@
     p.page-header__subtitle Fill in the Church Service details below
 
   .page-content
-    =turbo_frame_tag dom_id(@church_service)
-      = render "form", church_service: @church_service
+    /=turbo_frame_tag dom_id(@church_service)
+    = render "form", church_service: @church_service

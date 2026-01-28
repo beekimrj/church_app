@@ -32,7 +32,7 @@
       span.record-show__field-label Baptism Date
       span.record-show__field-value = @member.baptism_date&.strftime("%B %d, %Y") || "-"
   .btn-groups.btn-groups__right
-    = link_to "Back", request.referer || members_path, class: "btn btn--secondary"
+    = link_to "Back", members_path, class: "btn btn--secondary"
     = link_to "Edit", edit_member_path(@member), class: "btn btn--primary"
     = link_to "Delete",
         member_path(@member),
