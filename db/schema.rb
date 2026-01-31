@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_16_114927) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_31_090938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,12 +25,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_16_114927) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "status"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.bigint "church_service_id", null: false
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "recurrence"
+    t.time "default_start_time"
+    t.time "default_end_time"
+    t.integer "capacity"
     t.index ["church_service_id"], name: "index_events_on_church_service_id"
   end
 
