@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attendances
   resources :members
   resources :events
   resources :church_services
