@@ -24,19 +24,27 @@
 
 class Event < ApplicationRecord
   belongs_to :church_service
+  has_many :attendances
+
+  enum :recurrence, {
+    once: "once",
+    weekly: "weekly",
+    monthly: "monthly",
+    yearly: "yearly"
+  }
+
+  enum :status, {
+    active: "active",
+    inactive: "inactive"
+  }
 end
 
+# Pending to add following column
 
-# t.string   :name, null: false
-# t.text     :description
-# t.string   :event_type
-# t.string   :recurrence        # none, weekly, yearly
-# t.datetime :start_date        # informational
-# t.datetime :end_date          # informational
-# t.time     :default_start_time
-# t.time     :default_end_time
-# t.integer  :capacity
-# t.boolean  :active, default: true
-# t.string   :code
-# t.references :church_service, null: false, foreign_key: true
-# t.timestamps
+# event_type :string
+# examples:
+# "regular_service"
+# "outreach"
+# "training"
+# "social"
+# "ceremony"

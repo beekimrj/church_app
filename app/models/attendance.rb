@@ -18,5 +18,11 @@
 #
 
 class Attendance < ApplicationRecord
+  enum :status, {
+  scheduled: "scheduled",
+  completed: "completed",
+  cancelled: "cancelled"
+}
   belongs_to :event
+  has_one :church_service, through: :event
 end

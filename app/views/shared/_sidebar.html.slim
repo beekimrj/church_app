@@ -8,8 +8,8 @@ sidebar.sidebar_container
     .menu_items
       = menu_item(:church_services, :index, 'Services', nil,  {icon: 'church'})
       = menu_item(:members, :index, 'Members', nil, {icon: 'users'})
-      = menu_item(:pages, :home, 'Events', root_path, {icon: 'clipboard'})
-      = menu_item(:pages, :home, 'Attendance', root_path, {icon: 'calendar'})
+      = menu_item(:pages, :home, 'Events', events_path, {icon: 'clipboard'})
+      = menu_item(:pages, :home, 'Attendance', attendances_path, {icon: 'calendar'})
   .sidebar__bottom
     .menu_buttons
       = menu_item(:pages, :home, 'My Profile', root_path, {icon: 'user', class: 'profile'})
