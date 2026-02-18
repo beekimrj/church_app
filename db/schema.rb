@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_31_101348) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_18_142955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,10 +28,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_31_101348) do
 
   create_table "church_services", force: :cascade do |t|
     t.string "name"
-    t.string "status"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "events", force: :cascade do |t|

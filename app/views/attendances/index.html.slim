@@ -1,11 +1,21 @@
-p style="color: green" = notice
+.record-show
+  .record-show__header
+    h1 Attendances
+    .record-show__actions
+      = link_to new_attendance_path, class: "btn btn--primary" do
+        = create_icon("add")
+        |  Add New
 
-h1 Attendances
-
-#attendances
-  - @attendances.each do |attendance|
-    == render attendance
-    p
-      = link_to "Show this attendance", attendance
-
-= link_to "New attendance", new_attendance_path
+  .record-show__grid
+    .table-container
+      table
+        thead
+          tr
+            th Date
+            th Event Name
+            th Service
+            th Status
+            th Actions
+        tbody
+          - @attendances.each do |attendance|
+            = render attendance

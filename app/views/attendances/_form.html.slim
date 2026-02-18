@@ -1,34 +1,35 @@
-= form_with(model: attendance) do |form|
+= form_with(model: attendance, class: "form") do |form|
   - if attendance.errors.any?
-    div style="color: red"
+    .form-errors
       h2 = "#{pluralize(attendance.errors.count, "error")} prohibited this attendance from being saved:"
       ul
         - attendance.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :event_id, style: "display: block"
-    = form.text_field :event_id
+  .form-section
+    h2.form-section__title Details
+    .form-grid
+      .form-row
+        = form.label :event_id
+        = form.select :event_id, Event.select(:name, :id).map { |r| [r.name, r.id] }, { include_blank: "Select Event" }
+      .form-row
+        = form.label :date
+        = form.date_field :date, placeholder: "Date"
+      .form-row
+        = form.label :start_time
+        = form.time_field :start_time, placeholder: "Start Time"
 
-  div
-    = form.label :date, style: "display: block"
-    = form.date_field :date
+      .form-row
+        = form.label :end_time
+        = form.time_field :end_time, placeholder: "End Date"
+      .form-row
+        = form.label :status
+        = form.select :status, Attendance.statuses.keys.map { |r| [r.humanize, r] }, { include_blank: "Select Status" }
+      .form-row
+        = form.label :note
+        = form.textarea :note
 
-  div
-    = form.label :start_time, style: "display: block"
-    = form.time_field :start_time
-
-  div
-    = form.label :end_time, style: "display: block"
-    = form.time_field :end_time
-
-  div
-    = form.label :status, style: "display: block"
-    = form.text_field :status
-
-  div
-    = form.label :note, style: "display: block"
-    = form.textarea :note
-
-  div
-    = form.submit
+  .form-actions
+    .btn-groups
+      = link_to "Cancel", attendances_path, class: "btn btn--secondary"
+      = form.submit "Save", class: "btn btn--primary"

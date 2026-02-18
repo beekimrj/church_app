@@ -1,18 +1,20 @@
 .record-show
   .record-show__header
-    .record-show__title
-  .record-show__actions
-    = link_to new_church_service_path, class: "btn btn--primary" do
-      = create_icon("add")
-      |  Add/Remove Service
-  .table-container
-    table
-      thead
-        tr
-          th Code
-          th Name
-          th Status
-          th Actions
-      tbody
-        -@church_services.each do |church_service|
-          =render "church_services/church_service", church_service: church_service
+    h1 Church Services
+    .record-show__actions
+      = link_to new_church_service_path, class: "btn btn--primary" do
+        = create_icon("add")
+        |  Add New
+
+  .record-show__grid
+    .table-container
+      table
+        thead
+          tr
+            th Code
+            th Name
+            th Status
+            th Actions
+        tbody
+          -@church_services.each do |church_service|
+            =render "church_services/church_service", church_service: church_service

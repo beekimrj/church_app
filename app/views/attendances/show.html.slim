@@ -1,10 +1,35 @@
-p style="color: green" = notice
+.record-show
+  .record-show__header
+    .record-show__title
+      h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
 
-== render @attendance
+  .record-show__grid
+    .record-show__field
+      span.record-show__field-label Church Service
+      span.record-show__field-value = @attendance.church_service.name || "-"
 
-div
-  => link_to "Edit this attendance", edit_attendance_path(@attendance)
-  '|
-  =< link_to "Back to attendances", attendances_path
+    .record-show__field
+      span.record-show__field-label Start time
+      span.record-show__field-value = @attendance.start_time.presence || "-"
 
-  = button_to "Destroy this attendance", @attendance, method: :delete
+    .record-show__field
+      span.record-show__field-label End time
+      span.record-show__field-value = @attendance.end_time.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Status
+      span.record-show__field-value = @attendance.status&.humanize || "-"
+
+  .record-show__grid
+    .record-show__field
+      span.record-show__field-label Note
+      span.record-show__field-value = @attendance.note || "-"
+
+
+  .btn-groups.btn-groups__right
+    = link_to "Back", attendances_path, class: "btn btn--secondary"
+    = link_to "Edit", edit_attendance_path(@attendance), class: "btn btn--primary"
+    = link_to "Delete",
+        attendance_path(@attendance),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this attendance?" },
+        class: "btn btn--danger"
