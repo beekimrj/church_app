@@ -1,34 +1,44 @@
-= form_with(model: event) do |form|
+= form_with(model: event, class: "form") do |form|
   - if event.errors.any?
-    div style="color: red"
+    .form-errors
       h2 = "#{pluralize(event.errors.count, "error")} prohibited this event from being saved:"
       ul
         - event.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :name, style: "display: block"
-    = form.text_field :name
+  .form-section
+    h2.form-section__title Details
+    .form-grid
+      .form-row
+        = form.label :name
+        = form.text_field :name, placeholder: "Name"
+      .form-row
+        = form.label :code
+        = form.text_field :code, placeholder: "Code"
+      .form-row
+        = form.label :start_date
+        = form.date_field :start_date, placeholder: "Start Date"
+      .form-row
+        = form.label :end_date
+        = form.date_field :end_date, placeholder: "End Date"
+      .form-row
+        = form.label :capacity
+        = form.number_field :capacity, placeholder: "Total Capacity"
+      .form-row
+        label Status
+        .form-row__radios
+          - Event.statuses.each do |key,value|
+            label.radio-label
+              = form.radio_button :status, value
+              = key.capitalize
+      .form-row
+        = form.label :recurrence
+        = form.select :recurrence, Event.recurrences.keys.map { |r| [r.humanize, r] }, { include_blank: "Select recurrence" }
+      .form-row
+        = form.label :church_service_id
+        = form.select :church_service_id, ChurchService.select(:name, :id).map { |r| [r.name, r.id] }, { include_blank: "Select Church Service" }
 
-  div
-    = form.label :status, style: "display: block"
-    = form.text_field :status
-
-  div
-    = form.label :start_date, style: "display: block"
-    = form.datetime_field :start_date
-
-  div
-    = form.label :end_date, style: "display: block"
-    = form.datetime_field :end_date
-
-  div
-    = form.label :church_service_id, style: "display: block"
-    = form.text_field :church_service_id
-
-  div
-    = form.label :code, style: "display: block"
-    = form.text_field :code
-
-  div
-    = form.submit
+  .form-actions
+    .btn-groups
+      = link_to "Cancel", events_path, class: "btn btn--secondary"
+      = form.submit "Save", class: "btn btn--primary"

@@ -1,11 +1,22 @@
-p style="color: green" = notice
+.record-show
+  .record-show__header
+    h1 Events
+    .record-show__actions
+      = link_to new_event_path, class: "btn btn--primary" do
+        = create_icon("add")
+        |  Add New
 
-h1 Events
-
-#events
-  - @events.each do |event|
-    == render event
-    p
-      = link_to "Show this event", event
-
-= link_to "New event", new_event_path
+  .record-show__grid
+    .table-container
+      table
+        thead
+          tr
+            th Code
+            th Name
+            th Service
+            th Start Date
+            th Status
+            th Actions
+        tbody
+          - @events.each do |event|
+            = render event

@@ -1,19 +1,17 @@
-div id="#{dom_id event}"
-  p
-    strong Name:
-    =< event.name
-  p
-    strong Status:
-    =< event.status
-  p
-    strong Start date:
-    =< event.start_date
-  p
-    strong End date:
-    =< event.end_date
-  p
-    strong Church service:
-    =< event.church_service_id
-  p
-    strong Code:
-    =< event.code
+tr id="#{dom_id event}"
+  td
+    =event.code
+  td
+    =event.name
+  td
+    =event.church_service.name
+  td
+    =event.start_date
+  td
+    =event.status
+  td
+    .btn-groups
+      =link_to event_path(event), class: "btn btn--light" do
+        =create_icon("show")
+      =link_to edit_event_path(event), class: "btn btn--light" do
+        =create_icon("edit")

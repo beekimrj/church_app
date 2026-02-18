@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @events = Event.includes(:church_service).all
   end
 
   # GET /events/1
@@ -53,6 +53,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.expect(event: [ :name, :status, :start_date, :end_date, :church_service_id, :code ])
+      params.expect(event: [ :name, :status, :start_date, :end_date, :church_service_id, :code, :recurrence, :capacity ])
     end
 end
