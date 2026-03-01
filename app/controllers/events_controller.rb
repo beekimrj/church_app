@@ -1,9 +1,15 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_church_service
+
 
   # GET /events
   def index
-    @events = Event.includes(:church_service).all
+    @events = if @church_service.present?
+      @church_service.events
+    else
+      Event.includes(:church_service).all
+    end
   end
 
   # GET /events/1
@@ -54,5 +60,9 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.expect(event: [ :name, :status, :start_date, :end_date, :church_service_id, :code, :recurrence, :capacity ])
+    end
+
+    def set_church_service
+      @church_service = ChurchService.find(params[:church_service_id]) if params[:church_service_id].present?
     end
 end

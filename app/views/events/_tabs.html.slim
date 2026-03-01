@@ -1,0 +1,8 @@
+.tabs
+ = link_to event_path(event), class: "tab #{'active' if active_tab == 'details'}" do
+     = create_icon("qr_code")
+     | Details
+
+ = link_to event_attendances_path(event), class: "tab #{'active' if active_tab == 'attendance_records'}" do
+   = create_icon("calendar")
+   | Attendances

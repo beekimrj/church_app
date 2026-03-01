@@ -2,7 +2,7 @@
   .record-show__header
     .record-show__title
       h1 = @church_service.name
-
+    = render "church_services/tabs", active_tab: "details", church_service: @church_service
   .record-show__grid
     .record-show__field
       span.record-show__field-label Code
@@ -11,7 +11,6 @@
     .record-show__field
       span.record-show__field-label Status
       span.record-show__field-value = @church_service.status.presence || "-"
-
 
   .btn-groups.btn-groups__right
     = link_to "Back", church_services_path, class: "btn btn--secondary"

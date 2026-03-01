@@ -1,0 +1,8 @@
+.tabs
+ = link_to church_service_path(church_service), class: "tab #{'active' if active_tab == 'details'}" do
+    = create_icon("qr_code")
+    | Details
+
+ = link_to church_service_events_path(church_service), class: "tab #{'active' if active_tab == 'event_records'}" do
+   = create_icon("calendar")
+   | Events

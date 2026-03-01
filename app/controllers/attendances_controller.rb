@@ -1,9 +1,14 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[ show edit update destroy ]
+  before_action :set_event
 
   # GET /attendances
   def index
-    @attendances = Attendance.all
+    @attendances = if @event.present?
+      @event.attendances
+    else
+      Attendance.all
+    end
   end
 
   # GET /attendances/1
@@ -54,5 +59,9 @@ class AttendancesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def attendance_params
       params.expect(attendance: [ :event_id, :date, :start_time, :end_time, :status, :note ])
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id]) if params[:event_id].present?
     end
 end

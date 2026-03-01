@@ -1,10 +1,16 @@
 .record-show
   .record-show__header
-    h1 Attendances
-    .record-show__actions
-      = link_to new_attendance_path, class: "btn btn--primary" do
+    -if @event.present?
+      .record-show__title
+        h1 = @event.name
+      = render "events/tabs", active_tab: "attendance_records", event: @event
+    -else
+      h1 Attendances
+      .record-show__actions
+      /= link_to new_attendance_path, class: "btn btn--primary" do
         = create_icon("add")
         |  Add New
+
 
   .record-show__grid
     .table-container

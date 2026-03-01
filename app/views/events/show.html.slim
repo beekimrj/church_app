@@ -3,6 +3,7 @@
     .record-show__title
       h1 = @event.name
 
+    = render "events/tabs", active_tab: "details", event: @event
   .record-show__grid
     .record-show__field
       span.record-show__field-label Code

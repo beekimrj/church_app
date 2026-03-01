@@ -1,8 +1,15 @@
 .record-show
   .record-show__header
-    h1 Events
-    .record-show__actions
-      = link_to new_event_path, class: "btn btn--primary" do
+    -if @church_service.present?
+      .record-show__title
+        h1 = @church_service.name
+      = render "church_services/tabs", active_tab: "event_records", church_service: @church_service
+    -else
+      h1 Events
+      .record-show__actions
+
+    /.record-show__actions
+      = link_to new_church_service_event_path(1), class: "btn btn--primary" do
         = create_icon("add")
         |  Add New
 

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :attendances
   resources :members
-  resources :events
-  resources :church_services
+  resources :church_services do
+    resources :events, shallow: true do
+      resources :attendances, shallow: true
+    end
+  end
+
+  resources :events, only: [ :index ]
+  resources :attendances, only: [ :index ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
