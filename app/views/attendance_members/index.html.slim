@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Attendance members
+
+#attendance_members
+  - @attendance_members.each do |attendance_member|
+    == render attendance_member
+    p
+      = link_to "Show this attendance member", attendance_member
+
+= link_to "New attendance member", new_attendance_member_path

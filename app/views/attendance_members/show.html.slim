@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @attendance_member
+
+div
+  => link_to "Edit this attendance member", edit_attendance_member_path(@attendance_member)
+  '|
+  =< link_to "Back to attendance members", attendance_members_path
+
+  = button_to "Destroy this attendance member", @attendance_member, method: :delete

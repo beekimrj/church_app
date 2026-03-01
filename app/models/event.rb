@@ -25,6 +25,7 @@
 class Event < ApplicationRecord
   belongs_to :church_service
   has_many :attendances
+  has_many :members, through: :attendances
 
   enum :recurrence, {
     once: "once",

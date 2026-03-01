@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attendance_members
   resources :members
   resources :church_services do
     resources :events, shallow: true do
