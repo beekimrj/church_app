@@ -1,4 +1,4 @@
-= form_with(model: attendance, class: "form") do |form|
+= form_with(model: [event, attendance], class: "form") do |form|
   - if attendance.errors.any?
     .form-errors
       h2 = "#{pluralize(attendance.errors.count, "error")} prohibited this attendance from being saved:"

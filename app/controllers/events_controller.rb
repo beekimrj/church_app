@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @event = @church_service.events.new
   end
 
   # GET /events/1/edit

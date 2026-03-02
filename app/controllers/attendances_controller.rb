@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendance, only: %i[ show edit update destroy ]
   before_action :set_event
+  before_action :set_attendance, only: %i[ show edit update destroy ]
 
   # GET /attendances
   def index
@@ -17,7 +17,7 @@ class AttendancesController < ApplicationController
 
   # GET /attendances/new
   def new
-    @attendance = Attendance.new
+    @attendance = @event.attendances.new
   end
 
   # GET /attendances/1/edit
