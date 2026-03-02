@@ -1,0 +1,10 @@
+h1 Editing attendance member
+
+== render "form", attendance_member: @attendance_member
+
+br
+
+div
+  => link_to "Show this attendance member", @attendance_member
+  '|
+  =< link_to "Back to attendance members", attendance_members_path

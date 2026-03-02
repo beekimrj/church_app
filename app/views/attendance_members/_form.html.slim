@@ -1,0 +1,30 @@
+= form_with(model: attendance_member) do |form|
+  - if attendance_member.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(attendance_member.errors.count, "error")} prohibited this attendance_member from being saved:"
+      ul
+        - attendance_member.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :member_id, style: "display: block"
+    = form.text_field :member_id
+
+  div
+    = form.label :attendance_id, style: "display: block"
+    = form.text_field :attendance_id
+
+  div
+    = form.label :arrived_at, style: "display: block"
+    = form.datetime_field :arrived_at
+
+  div
+    = form.label :departed_at, style: "display: block"
+    = form.datetime_field :departed_at
+
+  div
+    = form.label :note, style: "display: block"
+    = form.text_field :note
+
+  div
+    = form.submit

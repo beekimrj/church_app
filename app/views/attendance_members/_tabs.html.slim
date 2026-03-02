@@ -3,6 +3,6 @@
      = create_icon("qr_code")
      | Details
 
- = link_to attendance_attendance_members_path(attendance), class: "tab #{'active' if active_tab == 'attendance_member_records'}" do
+ = link_to attendance_path(attendance), class: "tab #{'active' if active_tab == 'attendance_record'}" do
    = create_icon("calendar")
    | Attendance Records

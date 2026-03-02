@@ -1,0 +1,26 @@
+.record-show
+  .record-show__header
+    -if @attendance.present?
+      .record-show__title
+        h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
+      = render "attendances/tabs", active_tab: "attendance_member_records", attendance: @attendance
+
+      /.record-show__actions
+        = link_to new_event_attendance_path(@event), class: "btn btn--primary" do
+          = create_icon("add")
+          |  Add New
+
+    -else
+      h1 Attendance members
+
+  .record-show__grid
+    .table-container
+      table
+        thead
+          tr
+            th Member
+            th Attended
+            th Actions
+        tbody
+          - @attendance_members.each do |attendance_member|
+            = render attendance_member

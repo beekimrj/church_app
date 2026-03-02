@@ -13,6 +13,7 @@
 class ChurchService < ApplicationRecord
   has_many :events
   has_many :attendances, through: :events
+  has_many :members, through: :attendances
 
   enum :status, {
     active: "active",
