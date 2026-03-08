@@ -3,7 +3,7 @@ class ChurchServicesController < ApplicationController
 
   # GET /church_services
   def index
-    @church_services = ChurchService.all
+    @church_services = ChurchService.all.page(params[:page])
   end
 
   # GET /church_services/1

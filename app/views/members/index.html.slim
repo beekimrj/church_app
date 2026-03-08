@@ -19,3 +19,6 @@
         tbody
           - @members.each do |member|
             = render member
+
+      .pagination
+        = paginate @members

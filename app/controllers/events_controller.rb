@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     else
       Event.includes(:church_service).all
     end
+    @events = @events.page(params[:page])
   end
 
   # GET /events/1

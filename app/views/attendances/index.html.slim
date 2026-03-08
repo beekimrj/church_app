@@ -26,3 +26,6 @@
         tbody
           - @attendances.each do |attendance|
             = render attendance
+
+      .pagination
+        = paginate @attendances

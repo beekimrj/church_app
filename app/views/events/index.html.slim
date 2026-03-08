@@ -26,3 +26,6 @@
         tbody
           - @events.each do |event|
             = render event
+
+      .pagination
+        = paginate @events

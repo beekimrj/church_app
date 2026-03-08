@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  margin-top: var(--space-l);
+  font-size: var(--font-size-m);
+  font-family: var(--font-family-sans);
+}
+
+/* links */
+.pagination a {
+  text-decoration: none;
+  color: var(--color-primary);
+  padding: 0 var(--space-xxs);
+}
+
+.pagination a:hover {
+  text-decoration: underline;
+}
+
+/* active page */
+.pagination .current {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+}
+
+/* disabled */
+.pagination .disabled {
+  color: var(--color-separator);
+}

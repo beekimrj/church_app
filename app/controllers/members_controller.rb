@@ -3,7 +3,7 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    @members = Member.all
+    @members = Member.all.order(:id).page(params[:page])
   end
 
   # GET /members/1

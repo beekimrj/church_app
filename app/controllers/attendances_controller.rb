@@ -9,6 +9,7 @@ class AttendancesController < ApplicationController
     else
       Attendance.all
     end
+    @attendances = @attendances.page(params[:page])
   end
 
   # GET /attendances/1

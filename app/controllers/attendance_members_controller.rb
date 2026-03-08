@@ -4,7 +4,7 @@ class AttendanceMembersController < ApplicationController
 
   # GET /attendance_members
   def index
-    @attendance_members = AttendanceMember.all
+    @attendance_members = AttendanceMember.includes(:member).all.page(params[:page])
   end
 
   # GET /attendance_members/1
