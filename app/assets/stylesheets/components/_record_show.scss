@@ -38,10 +38,13 @@
   }
 
   .record-show__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--space-l) var(--space-xl);
-    margin-bottom: var(--space-l);
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    // gap: var(--space-l) var(--space-xl);
+    // margin-bottom: var(--space-l);
   }
 
   .record-show__field {

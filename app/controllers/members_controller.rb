@@ -3,7 +3,11 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    @members = Member.all.order(:id).page(params[:page])
+    @members = Member.all
+    if params[:q].present?
+      @members = @members.search(params[:q])
+    end
+    @members = @members.order(:id).page(params[:page])
   end
 
   # GET /members/1

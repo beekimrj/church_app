@@ -7,6 +7,12 @@
         |  Add New
 
   .record-show__grid
+    .record-show__search
+      = form_with url: members_path, method: :get, local: false, html: { class: "search-form" } do |f|
+        .search-form__row
+          = f.text_field :q, value: params[:q], placeholder: "Search members...", class: "input"
+          = f.submit "Search", class: "btn btn--primary"
+
     .table-container
       table
         thead
