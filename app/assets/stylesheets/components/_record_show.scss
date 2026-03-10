@@ -9,7 +9,7 @@
   box-shadow: var(--shadow-large);
   padding: var(--space-xl);
   color: var(--color-text);
-  margin: var(--space-l) auto;
+  // margin: var(--space-l) auto;
   width: 100%;
 
   .record-show__header {
@@ -44,7 +44,7 @@
     // display: grid;
     // grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     // gap: var(--space-l) var(--space-xl);
-    // margin-bottom: var(--space-l);
+    margin-bottom: var(--space-l);
   }
 
   .record-show__field {

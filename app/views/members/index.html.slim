@@ -8,9 +8,9 @@
 
   .record-show__grid
     .record-show__search
-      = form_with url: members_path, method: :get, local: false, html: { class: "search-form" } do |f|
-        .search-form__row
-          = f.text_field :q, value: params[:q], placeholder: "Search members...", class: "input"
+      = form_with url: members_path, method: :get, local: false, html: { class: "form form-search" } do |f|
+        .form-row.column
+          = f.text_field :q, value: params[:q], placeholder: "Search members..."
           = f.submit "Search", class: "btn btn--primary"
 
     .table-container
