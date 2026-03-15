@@ -7,7 +7,7 @@ class MembersController < ApplicationController
     if params[:q].present?
       @members = @members.search(params[:q])
     end
-    @members = @members.order(:id).page(params[:page])
+    @members = @members.ordered.page(params[:page])
   end
 
   # GET /members/1

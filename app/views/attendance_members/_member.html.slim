@@ -1,0 +1,10 @@
+tr id="#{dom_id member}"
+  td
+    =member.full_name
+  td
+    =attended_member_ids.include?(member.id) ? "Yes" : "No"
+
+  td
+    .btn-groups
+      =link_to attendance_member_path(member), class: "btn btn--light" do
+        =create_icon("show")

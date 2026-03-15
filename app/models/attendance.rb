@@ -25,4 +25,6 @@ class Attendance < ApplicationRecord
 }
   belongs_to :event
   has_one :church_service, through: :event
+  has_many :attendance_members
+  has_many :members, through: :attendance_members
 end

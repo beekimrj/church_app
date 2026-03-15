@@ -1,18 +1,15 @@
 .record-show
   .record-show__header
-    -if @attendance.present?
-      .record-show__title
-        h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
-      = render "attendances/tabs", active_tab: "attendance_member_records", attendance: @attendance
+    .record-show__title
+      h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
+    = render "attendances/tabs", active_tab: "attendance_member_records", attendance: @attendance
 
-      /.record-show__actions
-        = link_to new_event_attendance_path(@event), class: "btn btn--primary" do
-          = create_icon("add")
-          |  Add New
-
-    -else
-      h1 Attendance members
-
+  .record-show__search
+      = form_with url: attendance_attendance_members_path(@attendance), method: :get, local: false, html: { class: "form form-search" } do |f|
+        .form-row.column
+          = f.text_field :q, value: params[:q], placeholder: "Search members..."
+          = f.select :status, attendance_statuses, { selected: params[:status] || "attended" }
+          = f.submit "Search", class: "btn btn--primary"
   .record-show__grid
     .table-container
       table
@@ -22,7 +19,7 @@
             th Attended
             th Actions
         tbody
-          - @attendance_members.each do |attendance_member|
-            = render attendance_member
+          - @members.each do |member|
+            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attended_member_ids: @attended_member_ids}
       .pagination
-        = paginate @attendance_members
+        = paginate @members
