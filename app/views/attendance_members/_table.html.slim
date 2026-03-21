@@ -1,0 +1,9 @@
+table
+  thead
+    tr
+      th Member
+      th Attended
+      th Actions
+  tbody
+    - members.each do |member|
+      = render partial: "attendance_members/member", locals: {member: member, attendance: attendance, attended_member_ids: attended_member_ids}

@@ -5,7 +5,7 @@ before_action :set_attendance, only: %i[ index create new ]
   # GET /attendance_members
   def index
     @members = filter_members.page(params[:page])
-    @attended_member_ids = @attendance.attendance_members.where(member: @members).pluck(:id)
+    @attended_member_ids = @attendance.attendance_members.where(member: @members).pluck(:member_id)
   end
 
   # GET /attendance_members/1
@@ -24,12 +24,23 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # POST /attendance_members
   def create
-    @attendance_member = AttendanceMember.new(attendance_member_params)
+    @attendance_member = AttendanceMember.new(attendance_member_params.merge(arrived_at: Time.current))
 
-    if @attendance_member.save
-      redirect_to @attendance_member, notice: "Attendance member was successfully created."
-    else
-      render :new, status: :unprocessable_content
+    respond_to do |format|
+      if @attendance_member.save
+        format.html { redirect_to attendance_attendance_members_path(@attendance_member.attendance), notice: "Member marked as attended." }
+        format.turbo_stream do
+          @members = filter_members.page(params[:page])
+          @attended_member_ids = @attendance.attendance_members.where(member: @members).pluck(:member_id)
+          render turbo_stream: [
+            turbo_stream.replace("attendance_members", partial: "attendance_members/table", locals: { members: @members, attendance: @attendance, attended_member_ids: @attended_member_ids }),
+            turbo_stream.replace("flash", partial: "shared/flash_messages")
+          ]
+        end
+      else
+        format.html { render :new, status: :unprocessable_content }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash_messages") }
+      end
     end
   end
 
@@ -44,8 +55,19 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # DELETE /attendance_members/1
   def destroy
+    member = @attendance_member.member
     @attendance_member.destroy!
-    redirect_to attendance_members_path, notice: "Attendance member was successfully destroyed.", status: :see_other
+    respond_to do |format|
+      format.html { redirect_to attendance_attendance_members_path(@attendance_member.attendance), notice: "Member marked as unattended.", status: :see_other }
+      format.turbo_stream do
+        @members = filter_members.page(params[:page])
+        @attended_member_ids = @attendance.attendance_members.where(member: @members).pluck(:member_id)
+        render turbo_stream: [
+          turbo_stream.replace("attendance_members", partial: "attendance_members/table", locals: { members: @members, attendance: @attendance, attended_member_ids: @attended_member_ids }),
+          turbo_stream.replace("flash", partial: "shared/flash_messages")
+        ]
+      end
+    end
   end
 
   private
@@ -53,6 +75,7 @@ before_action :set_attendance, only: %i[ index create new ]
   # Use callbacks to share common setup or constraints between actions.
   def set_attendance_member
     @attendance_member = AttendanceMember.find(params.expect(:id))
+    @attendance = @attendance_member.attendance
   end
 
   # Only allow a list of trusted parameters through.

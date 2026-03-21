@@ -6,5 +6,8 @@ tr id="#{dom_id member}"
 
   td
     .btn-groups
-      =link_to attendance_member_path(member), class: "btn btn--light" do
-        =create_icon("show")
+      - if attended_member_ids.include?(member.id)
+        = link_to "Show", attendance_member_path(member), class: "btn btn--light"
+        = link_to "Unattend", "#", class: "btn btn--danger", data: { action: "modal#openUnattend", member_id: member.id }
+      - else
+        = link_to "Attend", "#", class: "btn btn--primary", data: { action: "modal#openAttend", member_id: member.id }

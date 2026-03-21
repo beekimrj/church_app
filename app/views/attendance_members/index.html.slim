@@ -1,25 +1,48 @@
-.record-show
+.record-show data-controller="modal"
   .record-show__header
     .record-show__title
       h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
     = render "attendances/tabs", active_tab: "attendance_member_records", attendance: @attendance
 
   .record-show__search
-      = form_with url: attendance_attendance_members_path(@attendance), method: :get, local: false, html: { class: "form form-search" } do |f|
+      = form_with url: attendance_attendance_members_path(@attendance), method: :get, html: { class: "form form-search" } do |f|
         .form-row.column
           = f.text_field :q, value: params[:q], placeholder: "Search members..."
           = f.select :status, attendance_statuses, { selected: params[:status] || "attended" }
           = f.submit "Search", class: "btn btn--primary"
   .record-show__grid
     .table-container
-      table
-        thead
-          tr
-            th Member
-            th Attended
-            th Actions
-        tbody
-          - @members.each do |member|
-            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attended_member_ids: @attended_member_ids}
-      .pagination
-        = paginate @members
+      = turbo_frame_tag "attendance_members" do
+        = render partial: "attendance_members/table", locals: { members: @members, attendance: @attendance, attended_member_ids: @attended_member_ids }
+        .pagination
+          = paginate @members
+
+  / Modal for attending
+  dialog data-modal-target="attendDialog"
+  .modal
+    .modal__header
+      h2 Attend Member
+      button.btn.btn--light data-action="modal#close" ×
+    .modal__body
+      = form_with model: [@attendance, AttendanceMember.new], url: attendance_attendance_members_path(@attendance), method: :post, local: false do |f|
+        = f.hidden_field :member_id, id: "attend_member_id"
+        .form-group
+          = f.label :note, "Note (optional)"
+          = f.text_field :note
+        .form-actions
+          = f.submit "Attend", class: "btn btn--primary"
+          button.btn.btn--light data-action="modal#close" Cancel
+
+  / Modal for unattending
+  dialog data-modal-target="unattendDialog"
+  .modal
+    .modal__header
+      h2 Confirm Unattend
+      button.btn.btn--light data-action="modal#close" ×
+    .modal__body
+      p Are you sure you want to mark this member as unattended? This will remove their attendance record.
+      = form_with url: "/attendance_members", method: :delete, data: { turbo: true } do |f|
+        = f.hidden_field :id, id: "unattend_member_id"
+        .form-actions
+          = f.submit "Unattend", class: "btn btn--danger"
+          button.btn.btn--light data-action="modal#close" Cancel
