@@ -9,6 +9,15 @@ This repository is a Rails backend + SCSS frontend project with no frontend Java
 - RSpec for tests (`spec/`), plus request and model specs.
 - Existing domain: `attendance_members`, `attendances`, `church_services`, `events`, `members`.
 
+## Development Guidelines Reference
+
+**Always review these comprehensive guidelines before generating code:**
+
+- **[.github/rails-instructions.md](./rails-instructions.md)** - Rails development patterns, architecture principles (SOLID/DRY), model/controller design, service objects, concerns, testing guidelines, and SCSS practices.
+- **[.github/git-instructions.md](./git-instructions.md)** - Git workflow, commit conventions, branching strategy, and push approval process.
+
+These documents provide exhaustive patterns and best practices for this project. Always check current codebase first before assuming patterns.
+
 ## Core Copilot behavior
 - Follow idiomatic Rails patterns:
   - Skinny controllers, fat models (or service objects for complex logic).
@@ -57,6 +66,35 @@ This repository is a Rails backend + SCSS frontend project with no frontend Java
 For each generated snippet include these comments:
 - `# Copilot: generated` at top of file or method.
 - `# TODO: validate business rules` where domain logic is scaffolded and needs human confirmation.
+
+## Git Commit Conventions
+
+All AI-generated commits must follow the prefix convention defined in [.github/git-instructions.md](./git-instructions.md).
+
+**AI Commit Format:**
+```
+AI: <type>: <description>
+```
+
+### Commit Types
+- `feat`: New features
+- `fix`: Bug fixes
+- `refactor`: Code refactoring
+- `test`: Test additions/updates
+- `docs`: Documentation updates
+- `style`: Code style/formatting
+- `perf`: Performance improvements
+- `chore`: Build/tooling changes
+
+### Examples
+```
+AI: feat: add dashboard component
+AI: fix: correct form validation
+AI: test: add member model specs
+AI: refactor: extract service object
+```
+
+**Reference:** See [.github/git-instructions.md](./git-instructions.md) for complete git workflow guidelines and commit conventions.
 
 ## Example startup prompt (assistant preface)
 "You are generating code for a Rails + SCSS app with structured stylesheets. Follow RuboCop and Rails style rules, keep controllers skinny, use strong params, and add tests alongside implementations."
