@@ -19,6 +19,7 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # GET /attendance_members/1/edit
   def edit
+    @attendance = @attendance_member.attendance
   end
 
   # POST /attendance_members

@@ -1,30 +1,24 @@
-= form_with(model: attendance_member) do |form|
+= form_with(model: attendance_member, class: "form") do |form|
   - if attendance_member.errors.any?
-    div style="color: red"
+    .form-errors
       h2 = "#{pluralize(attendance_member.errors.count, "error")} prohibited this attendance_member from being saved:"
       ul
         - attendance_member.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :member_id, style: "display: block"
-    = form.text_field :member_id
-
-  div
-    = form.label :attendance_id, style: "display: block"
-    = form.text_field :attendance_id
-
-  div
-    = form.label :arrived_at, style: "display: block"
-    = form.datetime_field :arrived_at
-
-  div
-    = form.label :departed_at, style: "display: block"
-    = form.datetime_field :departed_at
-
-  div
-    = form.label :note, style: "display: block"
-    = form.text_field :note
-
-  div
-    = form.submit
+  .form-section
+    h2.form-section__title Details
+    .form-grid
+      .form-row
+        = form.label :attrived_at
+        = form.datetime_field :arrived_at, placeholder: "Arrived At"
+      .form-row
+        = form.label :deprted_at
+        = form.datetime_field :departed_at, placeholder: "Departed At"
+      .form-row
+        = form.label :note
+        = form.text_field :note, placeholder: "Note"
+  .form-actions
+    .btn-groups
+      = link_to "Cancel", attendance_attendance_members_path(@attendance), class: "btn btn--secondary"
+      = form.submit "Save", class: "btn btn--primary"
