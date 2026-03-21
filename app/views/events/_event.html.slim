@@ -11,7 +11,7 @@ tr id="#{dom_id event}"
     =event.status
   td
     .btn-groups
-      =link_to event_path(event), class: "btn btn--light" do
+      =link_to event_attendances_path(event), class: "btn btn--light" do
         =create_icon("show")
       =link_to edit_event_path(event), class: "btn btn--light" do
         =create_icon("edit")

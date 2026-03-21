@@ -9,7 +9,7 @@ tr id="#{dom_id attendance}"
     =attendance.status
   td
     .btn-groups
-      =link_to attendance_path(attendance), class: "btn btn--light" do
+      =link_to attendance_attendance_members_path(attendance), class: "btn btn--light" do
         =create_icon("show")
       =link_to edit_attendance_path(attendance), class: "btn btn--light" do
         =create_icon("edit")
