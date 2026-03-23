@@ -20,6 +20,6 @@
             th Actions
         tbody
           - @members.each do |member|
-            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attended_member_ids: @attended_member_ids}
+            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attended_members: @attended_members}
       .pagination
         = paginate @members

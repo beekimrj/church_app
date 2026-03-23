@@ -1,10 +1,30 @@
-tr id="#{dom_id member}"
+- attendance_member = attended_members[member.id]
+
+tr id=dom_id(member)
   td
-    =member.full_name
-  td
-    =attended_member_ids.include?(member.id) ? "Yes" : "No"
+    = member.full_name
 
   td
-    .btn-groups
-      =link_to attendance_member_path(member), class: "btn btn--light" do
-        =create_icon("show")
+    - if attendance_member.present?
+      | Yes
+    - else
+      | No
+
+  td
+    .btn-group
+      - if attendance_member.present?
+        = link_to attendance_member_path(attendance_member), class: "btn btn--light" do
+          = create_icon("show")
+
+        = button_to "Unattend",
+          attendance_member_path(attendance_member),
+          method: :delete,
+          params: allowed_query_params,
+          class: "btn btn--danger"
+
+      - else
+        = button_to "Attend",
+          attendance_attendance_members_path(@attendance),
+          params: allowed_query_params.merge({ attendance_member: { member_id: member.id } }),
+          method: :post,
+          class: "btn btn--primary"

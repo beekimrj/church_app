@@ -5,7 +5,7 @@ before_action :set_attendance, only: %i[ index create new ]
   # GET /attendance_members
   def index
     @members = filter_members.page(params[:page])
-    @attended_member_ids = @attendance.attendance_members.where(member: @members).pluck(:id)
+    @attended_members = @attendance.attendance_members.where(member: @members).select(:id, :member_id).index_by(&:member_id)
   end
 
   # GET /attendance_members/1
@@ -24,10 +24,11 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # POST /attendance_members
   def create
-    @attendance_member = AttendanceMember.new(attendance_member_params)
+    @attendance_member = @attendance.attendance_members.new(attendance_member_params)
 
     if @attendance_member.save
-      redirect_to @attendance_member, notice: "Attendance member was successfully created."
+      redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
+        notice: "Attendance member for #{@attendance_member.member.full_name} was successfully created."
     else
       render :new, status: :unprocessable_content
     end
@@ -45,7 +46,8 @@ before_action :set_attendance, only: %i[ index create new ]
   # DELETE /attendance_members/1
   def destroy
     @attendance_member.destroy!
-    redirect_to attendance_members_path, notice: "Attendance member was successfully destroyed.", status: :see_other
+    redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
+      notice: "Attendance member for #{@attendance_member.member.full_name} was successfully removed.", status: :see_other
   end
 
   private
