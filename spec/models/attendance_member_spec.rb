@@ -2,14 +2,15 @@
 #
 # Table name: attendance_members
 #
-#  id            :integer          not null, primary key
-#  member_id     :integer          not null
-#  attendance_id :integer          not null
-#  arrived_at    :datetime
-#  departed_at   :datetime
-#  note          :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :integer          not null, primary key
+#  member_id       :integer          not null
+#  attendance_id   :integer          not null
+#  arrived_at      :datetime
+#  departed_at     :datetime
+#  note            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  attendance_type :string
 #
 # Indexes
 #

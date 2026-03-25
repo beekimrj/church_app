@@ -16,6 +16,9 @@
         = form.label :deprted_at
         = form.datetime_field :departed_at, placeholder: "Departed At"
       .form-row
+        = form.label :attendance_type
+        = form.select :attendance_type, AttendanceMember.attendance_types.keys.map { |r| [r.humanize, r] }
+      .form-row
         = form.label :note
         = form.text_field :note, placeholder: "Note"
   .form-actions

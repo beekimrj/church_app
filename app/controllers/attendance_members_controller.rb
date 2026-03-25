@@ -5,7 +5,7 @@ before_action :set_attendance, only: %i[ index create new ]
   # GET /attendance_members
   def index
     @members = filter_members.page(params[:page])
-    @attended_members = @attendance.attendance_members.where(member: @members).select(:id, :member_id).index_by(&:member_id)
+    @attended_members = @attendance.attendance_members.where(member: @members).select(:id, :member_id, :attendance_type).index_by(&:member_id)
   end
 
   # GET /attendance_members/1
@@ -59,7 +59,7 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # Only allow a list of trusted parameters through.
   def attendance_member_params
-    params.expect(attendance_member: [ :member_id, :attendance_id, :arrived_at, :departed_at, :note ])
+    params.expect(attendance_member: [ :member_id, :attendance_id, :arrived_at, :departed_at, :note, :attendance_type ])
   end
 
   def set_attendance

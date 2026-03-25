@@ -11,16 +11,21 @@ tr id=dom_id(member)
       | No
 
   td
-    .btn-group
+    - if attendance_member.present?
+      = attendance_member.attendance_type&.humanize
+    - else
+      | -
+  td
+    .btn-groups
       - if attendance_member.present?
-        = link_to attendance_member_path(attendance_member), class: "btn btn--light" do
-          = create_icon("show")
-
         = button_to "Unattend",
           attendance_member_path(attendance_member),
           method: :delete,
           params: allowed_query_params,
           class: "btn btn--danger"
+
+        = link_to attendance_member_path(attendance_member), class: "btn btn--light" do
+          = create_icon("show")
 
       - else
         = button_to "Attend",

@@ -2,14 +2,15 @@
 #
 # Table name: attendance_members
 #
-#  id            :integer          not null, primary key
-#  member_id     :integer          not null
-#  attendance_id :integer          not null
-#  arrived_at    :datetime
-#  departed_at   :datetime
-#  note          :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :integer          not null, primary key
+#  member_id       :integer          not null
+#  attendance_id   :integer          not null
+#  arrived_at      :datetime
+#  departed_at     :datetime
+#  note            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  attendance_type :string
 #
 # Indexes
 #
@@ -23,4 +24,6 @@ class AttendanceMember < ApplicationRecord
   belongs_to :attendance, counter_cache: true
   has_one :event, through: :attendance
   has_one :church_service, through: :event
+
+  enum :attendance_type, { in_person: "in_person", online: "online" }
 end
