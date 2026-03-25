@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_01_154545) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_25_011258) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_01_154545) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "attendance_members_count", default: 0, null: false
     t.index ["event_id"], name: "index_attendances_on_event_id"
   end
 

@@ -3,10 +3,14 @@
     .record-show__title
       h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
     = render "attendances/tabs", active_tab: "details", attendance: @attendance
-  .record-show__grid
+  .record-show__grid.row
     .record-show__field
       span.record-show__field-label Church Service
       span.record-show__field-value = @attendance.church_service.name || "-"
+
+    .record-show__field
+      span.record-show__field-label Total Attendance
+      span.record-show__field-value = @attendance.attendance_members_count
 
     .record-show__field
       span.record-show__field-label Start time

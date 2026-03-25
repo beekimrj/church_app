@@ -191,4 +191,9 @@ members.select { |m| m.gender == "male" }.first(8).each do |member|
   )
 end
 
+# populate counter
+Attendance.find_each do |attendance|
+  Attendance.reset_counters(attendance.id, :attendance_members)
+end
+
 puts "Seeding completed successfully!"
