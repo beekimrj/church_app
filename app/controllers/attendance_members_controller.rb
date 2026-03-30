@@ -47,7 +47,7 @@ before_action :set_attendance, only: %i[ index create new ]
   def destroy
     @attendance_member.destroy!
     redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
-      notice: "Attendance member for #{@attendance_member.member.full_name} was successfully removed.", status: :see_other
+      warning: "Attendance member for #{@attendance_member.member.full_name} was successfully removed.", status: :see_other
   end
 
   private
