@@ -60,5 +60,5 @@
 
   .form-actions
     .btn-groups
-      = link_to "Cancel", members_path, class: "btn btn--secondary"
+      = link_to "Cancel", member.persisted? ? member_path(member) : members_path, class: "btn btn--secondary"
       = form.submit "Save", class: "btn btn--primary"

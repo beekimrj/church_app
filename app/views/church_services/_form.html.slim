@@ -24,5 +24,5 @@
               = key.capitalize
   .form-actions
     .btn-groups
-      = link_to "Cancel", church_services_path, class: "btn btn--secondary"
+      = link_to "Cancel", church_service.persisted? ? church_service_path(church_service) : church_services_path, class: "btn btn--secondary"
       = form.submit "Save", class: "btn btn--primary"

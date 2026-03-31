@@ -28,7 +28,7 @@ before_action :set_attendance, only: %i[ index create new ]
 
     if @attendance_member.save
       redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
-        notice: "Attendance member for #{@attendance_member.member.full_name} was successfully created."
+        notice: "#{@attendance_member.member.full_name} was successfully marked as Attended."
     else
       render :new, status: :unprocessable_content
     end
@@ -47,7 +47,7 @@ before_action :set_attendance, only: %i[ index create new ]
   def destroy
     @attendance_member.destroy!
     redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
-      warning: "Attendance member for #{@attendance_member.member.full_name} was successfully removed.", status: :see_other
+      warning: "#{@attendance_member.member.full_name} was successfully removed from Attendance", status: :see_other
   end
 
   private

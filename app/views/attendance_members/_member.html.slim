@@ -18,7 +18,7 @@ tr id=dom_id(member)
   td
     .btn-groups
       - if attendance_member.present?
-        = button_to "Unattend",
+        = button_to "Remove",
           attendance_member_path(attendance_member),
           method: :delete,
           params: allowed_query_params,

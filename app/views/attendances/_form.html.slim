@@ -31,5 +31,5 @@
 
   .form-actions
     .btn-groups
-      = link_to "Cancel", attendances_path, class: "btn btn--secondary"
+      = link_to "Cancel", attendance.persisted? ? attendance_path(attendance) : attendances_path, class: "btn btn--secondary"
       = form.submit "Save", class: "btn btn--primary"
