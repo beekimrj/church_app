@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: attendances
@@ -18,13 +20,16 @@
 #
 
 class Attendance < ApplicationRecord
-  enum :status, {
-  scheduled: "scheduled",
-  completed: "completed",
-  cancelled: "cancelled"
-}
   belongs_to :event
   has_one :church_service, through: :event
   has_many :attendance_members
   has_many :members, through: :attendance_members
+
+  enum :status, {
+    scheduled: "scheduled",
+    completed: "completed",
+    cancelled: "cancelled"
+  }
+
+  validates :date, presence: true
 end

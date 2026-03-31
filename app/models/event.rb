@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -33,11 +35,13 @@ class Event < ApplicationRecord
     monthly: "monthly",
     yearly: "yearly"
   }
-
   enum :status, {
     active: "active",
     inactive: "inactive"
   }
+
+  validates :code, uniqueness: true, allow_nil: true
+  validates :name, presence: true, uniqueness: true
 end
 
 # Pending to add following column

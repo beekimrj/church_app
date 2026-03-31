@@ -3,7 +3,7 @@
     .record-show__title
       h1 = @church_service.name
     = render "church_services/tabs", active_tab: "details", church_service: @church_service
-  .record-show__grid
+  .record-show__grid.row
     .record-show__field
       span.record-show__field-label Code
       span.record-show__field-value = @church_service.code.presence || "-"

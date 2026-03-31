@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: church_services
@@ -19,4 +21,7 @@ class ChurchService < ApplicationRecord
     active: "active",
     inactive: "inactive"
   }
+
+  validates :code, uniqueness: true, allow_nil: true
+  validates :name, presence: true, uniqueness: true
 end

@@ -31,6 +31,7 @@ class Member < ApplicationRecord
   validates_presence_of :last_name
   validates_presence_of :marital_status
   validates_presence_of :gender
+  validates :code, uniqueness: true, allow_blank: true
 
   scope :search, -> (search_text) {
     return all if search_text.blank?

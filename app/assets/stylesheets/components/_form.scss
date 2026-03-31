@@ -106,18 +106,24 @@
 
   .field-with-error {
     display: flex;
+    width: 100%;
     flex-direction: column;
     // gap: var(--space-xxxs);
-  }
-
-  .field-with-error input,
-  .field-with-error select,
-  .field-with-error textarea {
+    input, select, textarea {
+    width: 100%;
     border-color: var(--color-danger);
+
+    &:focus {
+      border-color: var(--color-danger);
+      box-shadow: 0 0 0 0.1875rem var(--color-danger-bg);
+    }
+  }
   }
 
   .error-message {
     color: var(--color-danger);
+    font-size: var(--font-size-xs);
+    margin-top: var(--space-xxxs);
   }
 
   &-search {

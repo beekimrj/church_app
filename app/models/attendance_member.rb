@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: attendance_members
@@ -26,4 +28,10 @@ class AttendanceMember < ApplicationRecord
   has_one :church_service, through: :event
 
   enum :attendance_type, { in_person: "in_person", online: "online" }
+
+  before_create :assign_arrived_at
+
+  def assign_arrived_at
+    self.arrived_at ||= Time.current
+  end
 end

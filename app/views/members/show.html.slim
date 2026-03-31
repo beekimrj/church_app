@@ -1,9 +1,9 @@
 .record-show
   .record-show__header
     .record-show__title
-      h1 = @member.full_name
+      h1 = "Member: #{@member.full_name}"
 
-  .record-show__grid
+  .record-show__grid.row
     .record-show__field
       span.record-show__field-label Code
       span.record-show__field-value = @member.code.presence || "-"

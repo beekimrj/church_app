@@ -1,11 +1,4 @@
 = form_with(model: [event, attendance], class: "form") do |form|
-  - if attendance.errors.any?
-    .form-errors
-      h2 = "#{pluralize(attendance.errors.count, "error")} prohibited this attendance from being saved:"
-      ul
-        - attendance.errors.each do |error|
-          li = error.full_message
-
   .form-section
     h2.form-section__title Details
     .form-grid
@@ -21,13 +14,13 @@
 
       .form-row
         = form.label :end_time
-        = form.time_field :end_time, placeholder: "End Date"
+        = form.time_field :end_time, placeholder: "End Time"
       .form-row
         = form.label :status
         = form.select :status, Attendance.statuses.keys.map { |r| [r.humanize, r] }, { include_blank: "Select Status" }
       .form-row
         = form.label :note
-        = form.textarea :note
+        = form.text_area :note
 
   .form-actions
     .btn-groups
