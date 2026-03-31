@@ -14,11 +14,11 @@
 
     .record-show__field
       span.record-show__field-label Start time
-      span.record-show__field-value = @attendance.start_time.presence || "-"
+      span.record-show__field-value = display_time(@attendance.start_time)
 
     .record-show__field
       span.record-show__field-label End time
-      span.record-show__field-value = @attendance.end_time.presence || "-"
+      span.record-show__field-value =  display_time(@attendance.end_time)
 
     .record-show__field
       span.record-show__field-label Status

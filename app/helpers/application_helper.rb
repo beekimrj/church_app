@@ -22,4 +22,20 @@ module ApplicationHelper
     icon_class = FontIconMapper.find(icon_name)
     tag.i(class: icon_class)
   end
+
+  def display_time(value, format: :time)
+    display_datetime(value, format: format)
+  end
+
+  def display_date(value, format: :default)
+    return I18n.translate("show.blank_value") if value.nil?
+
+    I18n.localize(value, format: format)
+  end
+
+  def display_datetime(value, format: :default)
+    return I18n.translate("show.blank_value") if value.nil?
+
+    I18n.localize(value, format: format)
+  end
 end

@@ -5,11 +5,11 @@
   .record-show__grid.row
     .record-show__field
       span.record-show__field-label  Arrived At
-      span.record-show__field-value = @attendance_member.arrived_at.presence || "-"
+      span.record-show__field-value = display_datetime(@attendance_member.arrived_at)
 
     .record-show__field
       span.record-show__field-label Departed At
-      span.record-show__field-value = @attendance_member.departed_at.presence || "-"
+      span.record-show__field-value = display_datetime(@attendance_member.departed_at)
 
     .record-show__field
       span.record-show__field-label Attendance Type

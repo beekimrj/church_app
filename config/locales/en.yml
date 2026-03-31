@@ -29,3 +29,14 @@
 
 en:
   hello: "Hello world"
+
+  date:
+    formats:
+      default: "%d/%m/%Y" # AUS / NZL / GBR (UK)
+  time:
+    formats:
+      default: "%d/%m/%Y %I:%M:%S %p"
+      time: "%I:%M:%S %p"
+
+  show:
+    blank_value: "-"
