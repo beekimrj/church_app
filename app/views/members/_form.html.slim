@@ -1,5 +1,5 @@
 = form_with(model: member, class: "form") do |form|
-  - if member.errors.any?
+  /- if member.errors.any?
     .form-errors
       h2 = "#{pluralize(member.errors.count, "error")} prohibited this member from being saved:"
       ul
@@ -30,23 +30,16 @@
         = form.date_field :date_of_birth
       .form-row
         label Gender
-
-        .form-row__radios
-          - Member.genders.each do |key,value|
-            label.radio-label
-              = form.radio_button :gender, value
-              = key.capitalize
-      /.form-row
-        = form.label :marital_status
-        = form.text_field :marital_status
+        = form.collection_radio_buttons :gender, Member.genders, :last, :first do |b|
+          label.radio-label
+            = b.radio_button
+            = b.text.capitalize
       .form-row
         label Marital Status
-
-        .form-row__radios
-          - Member.marital_statuses.each do |key,value|
-            label.radio-label
-              = form.radio_button :marital_status, value
-              = key.capitalize
+        = form.collection_radio_buttons :marital_status, Member.marital_statuses, :last, :first do |b|
+          label.radio-label
+            = b.radio_button
+            = b.text.capitalize
       .form-row
         = form.label :baptism_date
         = form.date_field :baptism_date

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: members
@@ -23,8 +25,12 @@ class Member < ApplicationRecord
   has_many :church_services, through: :events
 
   enum :gender, { male: "male", female: "female" }
-
   enum :marital_status, { single: "single", married: "married", divorced: "divorced", widow: "widow", other: "other" }
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :marital_status
+  validates_presence_of :gender
 
   scope :search, -> (search_text) {
     return all if search_text.blank?
