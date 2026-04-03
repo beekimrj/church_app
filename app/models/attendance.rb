@@ -32,4 +32,8 @@ class Attendance < ApplicationRecord
   }
 
   validates :date, presence: true
+
+  delegate :name, to: :event, prefix: true
+
+  scope :upcomming, -> { where(date: Date.current..) }
 end

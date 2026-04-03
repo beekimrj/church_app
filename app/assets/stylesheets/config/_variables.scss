@@ -90,10 +90,9 @@
   /* ==============================
      CARD COLORS
      ============================== */
-  --card-bg: #97979e;
-  --card-header-bg: #1e1927;
-  --card-header-text: var(--color-white);
-  --card-details-bg: var(--color-text);
+  --card-header-text: var(--color-text);
+  --card-value-text: var(--color-primary);
+  --card-details-bg: var(--color-white);
 
   /* ==============================
      BUTTON COLORS (semantic tokens)

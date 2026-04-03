@@ -1,4 +1,37 @@
-= render partial: '/pages/hero_container'
-= render partial: '/pages/feature_container'
-= render partial: '/pages/location'
-= render partial: '/shared/footer'
+/= render partial: '/shared/footer'
+.dashboard
+  .dashboard__stats
+    = link_to church_services_path, class: "card" do
+      .card__title
+        = create_icon("church")
+        | Active Services
+      .card__value = @dashboard.church_services
+    = link_to members_path, class: "card" do
+      .card__title
+        = create_icon("users")
+        | Members
+      .card__value = @dashboard.total_members
+
+    = link_to events_path, class: "card" do
+      .card__title
+        = create_icon("clipboard")
+        | Active Events
+      .card__value = @dashboard.active_events
+
+    = link_to attendances_path, class: "card" do
+      .card__title
+        = create_icon("calendar")
+        | Upcoming Attendance
+      .card__value = @dashboard.upcoming_attendances.count
+
+  .dashboard__section
+    h3 Upcoming Attendances
+
+    - if @dashboard.upcoming_attendances.any?
+      ul
+        - @dashboard.upcoming_attendances.each do |attendance|
+          li
+            = link_to attendance_path(attendance) do
+              = "#{attendance.event_name} - #{attendance.date}"
+    - else
+      p No upcoming attendances

@@ -1,1 +1,27 @@
 @use "../mixins/media";
+
+.dashboard {
+  padding: var(--space-xl);
+  background: var(--color-background);
+  min-height: 100%;
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-l);
+    margin-bottom: var(--space-xxl);
+  }
+
+  &__section {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: var(--space-l);
+    box-shadow: var(--shadow-small);
+
+    h3 {
+      font-size: var(--font-size-l);
+      margin-bottom: var(--space-m);
+      color: var(--color-text);
+    }
+  }
+}
