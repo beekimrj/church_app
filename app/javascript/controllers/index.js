@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)
+
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)

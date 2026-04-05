@@ -1,0 +1,8 @@
+/Step 1: empty the Turbo Frame containing the form
+= turbo_stream.update nested_dom_id(@attendance, AttendanceMember.new), ''
+
+/ Step 2: append the created to the list
+= turbo_stream.replace nested_dom_id(@attendance, @member) do
+  = render partial: "attendance_members/member", locals: { member: @member, attendance: @attendance, attendance_member: @attendance_member }
+
+= render_turbo_stream_flash_messages

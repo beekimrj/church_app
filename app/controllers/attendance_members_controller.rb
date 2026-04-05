@@ -1,6 +1,6 @@
 class AttendanceMembersController < ApplicationController
 before_action :set_attendance_member, only: %i[ show edit update destroy ]
-before_action :set_attendance, only: %i[ index create new ]
+before_action :set_attendance, only: %i[ index create new]
 
   # GET /attendance_members
   def index
@@ -10,11 +10,13 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # GET /attendance_members/1
   def show
+    @attendance = @attendance_member.attendance
   end
 
   # GET /attendance_members/new
   def new
-    @attendance_member = AttendanceMember.new
+    @attendance_member = @attendance.attendance_members.new(attendance_member_params)
+    @attendance_member.arrived_at = Time.current
   end
 
   # GET /attendance_members/1/edit
@@ -25,10 +27,15 @@ before_action :set_attendance, only: %i[ index create new ]
   # POST /attendance_members
   def create
     @attendance_member = @attendance.attendance_members.new(attendance_member_params)
+    @member = @attendance_member.member
 
     if @attendance_member.save
-      redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
-        notice: "#{@attendance_member.member.full_name} was successfully marked as Attended."
+      notice_msg = "#{@attendance_member.member.full_name} was successfully marked as Attended."
+
+      respond_to do |format|
+        format.html { redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params), notice: notice_msg }
+        format.turbo_stream { flash.now[:notice] = notice_msg }
+      end
     else
       render :new, status: :unprocessable_content
     end
@@ -45,9 +52,15 @@ before_action :set_attendance, only: %i[ index create new ]
 
   # DELETE /attendance_members/1
   def destroy
+    @member = @attendance_member.member
+    @attendance = @attendance_member.attendance
     @attendance_member.destroy!
-    redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params),
-      warning: "#{@attendance_member.member.full_name} was successfully removed from Attendance", status: :see_other
+
+    warning_msg = "#{@attendance_member.member.full_name} was successfully removed from Attendance"
+    respond_to do |format|
+        format.html { redirect_to attendance_attendance_members_path(@attendance_member.attendance_id, allowed_query_params), warning: warning_msg, status: :see_other }
+        format.turbo_stream { flash.now[:warning] = warning_msg }
+      end
   end
 
   private

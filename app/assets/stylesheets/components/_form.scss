@@ -109,15 +109,17 @@
     width: 100%;
     flex-direction: column;
     // gap: var(--space-xxxs);
-    input, select, textarea {
-    width: 100%;
-    border-color: var(--color-danger);
-
-    &:focus {
+    input,
+    select,
+    textarea {
+      width: 100%;
       border-color: var(--color-danger);
-      box-shadow: 0 0 0 0.1875rem var(--color-danger-bg);
+
+      &:focus {
+        border-color: var(--color-danger);
+        box-shadow: 0 0 0 0.1875rem var(--color-danger-bg);
+      }
     }
-  }
   }
 
   .error-message {
@@ -134,6 +136,30 @@
         padding: 0 var(--space-m);
         flex: 1;
       }
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--modal-background);
+  .modal__container {
+    position: relative;
+
+    width: 100%;
+    max-width: 80rem;
+
+    padding: var(--space-l);
+
+    /* IMPORTANT: remove form margin so it centers nicely */
+    .form {
+      margin: 0;
     }
   }
 }

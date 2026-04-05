@@ -38,4 +38,14 @@ module ApplicationHelper
 
     I18n.localize(value, format: format)
   end
+
+  def nested_dom_id(*args)
+    args.map do |arg|
+      arg.respond_to?(:to_key) ? dom_id(arg) : arg.to_s
+    end.join("_")
+  end
+
+  def render_turbo_stream_flash_messages
+    turbo_stream.prepend "flash", partial: "layouts/flash"
+  end
 end

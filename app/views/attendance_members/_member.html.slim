@@ -1,6 +1,4 @@
-- attendance_member = attended_members[member.id]
-
-tr id=dom_id(member)
+tr id=nested_dom_id(attendance, member)
   td
     = member.full_name
 
@@ -22,6 +20,7 @@ tr id=dom_id(member)
           attendance_member_path(attendance_member),
           method: :delete,
           params: allowed_query_params,
+          data: { turbo_confirm: "Are you sure you want to mark as not attended?" },
           class: "btn btn--danger"
 
         = link_to attendance_member_path(attendance_member), class: "btn btn--light" do
@@ -29,7 +28,8 @@ tr id=dom_id(member)
 
       - else
         = button_to "Attend",
-          attendance_attendance_members_path(@attendance),
+          new_attendance_attendance_member_path(attendance),
           params: allowed_query_params.merge({ attendance_member: { member_id: member.id } }),
-          method: :post,
+          method: :get,
+          form: { data: { turbo_frame: nested_dom_id(attendance, AttendanceMember.new) } },
           class: "btn btn--primary"

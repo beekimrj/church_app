@@ -1,8 +1,4 @@
-h1 New attendance member
-
-== render "form", attendance_member: @attendance_member
-
-br
-
-div
-  = link_to "Back to attendance members", attendance_members_path
+= turbo_frame_tag nested_dom_id(@attendance_member.attendance, AttendanceMember.new), data: { controller: "modals" } do
+  .modal
+    .modal__container
+      = render "form", attendance_member: @attendance_member

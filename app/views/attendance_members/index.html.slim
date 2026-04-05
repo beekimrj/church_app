@@ -4,6 +4,7 @@
       h1 = "Attendance: #{@attendance.event.name}, Date: #{@attendance.date.presence}"
     = render "attendances/tabs", active_tab: "attendance_member_records", attendance: @attendance
 
+  =turbo_frame_tag nested_dom_id(@attendance, AttendanceMember.new)
   .record-show__search
       = form_with url: attendance_attendance_members_path(@attendance), method: :get, local: false, html: { class: "form form-search" } do |f|
         .form-row.column
@@ -21,6 +22,7 @@
             th Actions
         tbody
           - @members.each do |member|
-            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attended_members: @attended_members}
+            - attendance_member =  @attended_members[member.id]
+            = render partial: "attendance_members/member", locals: {member: member, attendance: @attendance, attendance_member: attendance_member}
       .pagination
         = paginate @members

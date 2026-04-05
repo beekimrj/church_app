@@ -1,6 +1,11 @@
-= form_with(model: attendance_member, class: "form") do |form|
+- model = attendance_member.persisted? ? [attendance_member] : [attendance_member.attendance, attendance_member]
+= form_with model: model, class: "form" do |form|
+  = form.hidden_field :member_id
+  - allowed_query_params.each do |key, value|
+    = hidden_field_tag key, value
   .form-section
-    h2.form-section__title Details
+    h2.form-section__title
+      = "Member: #{attendance_member.member.full_name}, Event: #{attendance_member.event.name}"
     .form-grid
       .form-row
         = form.label :attrived_at
@@ -16,5 +21,5 @@
         = form.text_field :note, placeholder: "Note"
   .form-actions
     .btn-groups
-      = link_to "Cancel", attendance_attendance_members_path(@attendance), class: "btn btn--secondary"
+      = link_to "Cancel", attendance_member.persisted? ? attendance_member_path(attendance_member) : attendance_attendance_members_path(attendance_member.attendance), data: { action: "click->modals#close" }, class: "btn btn--secondary"
       = form.submit "Save", class: "btn btn--primary"

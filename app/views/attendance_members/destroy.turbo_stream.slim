@@ -1,0 +1,4 @@
+= turbo_stream.replace nested_dom_id(@attendance, @member) do
+  = render partial: "attendance_members/member", locals: {member: @member, attendance: @attendance, attendance_member: nil }
+
+= render_turbo_stream_flash_messages
