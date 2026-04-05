@@ -1,6 +1,7 @@
 tr id=nested_dom_id(attendance, member)
   td
-    = member.full_name
+    = link_to member_path(member), target: "_blank" do
+      = member.full_name
 
   td
     - if attendance_member.present?
