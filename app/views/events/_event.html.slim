@@ -4,7 +4,8 @@ tr id="#{dom_id event}"
   td
     =event.name
   td
-    =event.church_service.name
+    = link_to church_service_path(event.church_service) do
+      =event.church_service.name
   td
     =display_date(event.start_date)
   td

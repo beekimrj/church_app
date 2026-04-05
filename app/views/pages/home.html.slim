@@ -21,13 +21,12 @@
     = link_to attendances_path, class: "card" do
       .card__title
         = create_icon("calendar")
-        | Upcoming Attendance
+        | Upcoming Events
       .card__value = @dashboard.upcoming_attendances.count
 
   .dashboard__section
-    h3 Upcoming Attendances
-
-    - if @dashboard.upcoming_attendances.any?
+    h3 Upcoming Events
+    - if @dashboard.upcoming_attendances.present?
       ul
         - @dashboard.upcoming_attendances.each do |attendance|
           li
@@ -35,3 +34,15 @@
               = "#{attendance.event_name} - #{attendance.date}"
     - else
       p No upcoming attendances
+
+  .dashboard__section
+    h3 Past Events
+
+    - if @dashboard.past_attendances.present?
+      ul
+        - @dashboard.past_attendances.each do |attendance|
+          li
+            = link_to attendance_path(attendance) do
+              = "#{attendance.event_name} - #{attendance.date}"
+    - else
+      p No past attendances

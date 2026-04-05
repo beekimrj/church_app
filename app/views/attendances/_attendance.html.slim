@@ -2,9 +2,11 @@ tr id="#{dom_id attendance}"
   td
     =display_date(attendance.date)
   td
-    =attendance.event.name
+    =link_to event_path(attendance.event) do
+      =attendance.event.name
   td
-    =attendance.church_service.name
+    =link_to church_service_path(attendance.church_service) do
+      =attendance.church_service.name
   td
     =attendance.status
   td

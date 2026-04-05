@@ -1,4 +1,5 @@
 module DashboardService
+  DEFAUL_RECORD_COUNT = 5
   extend self
 
   def active_events
@@ -6,7 +7,11 @@ module DashboardService
   end
 
   def upcoming_attendances
-    Attendance.upcomming.includes(:event).order(:date)
+    Attendance.upcomming.includes(:event).order(:date).limit(DEFAUL_RECORD_COUNT)
+  end
+
+  def past_attendances
+    Attendance.past.includes(:event).order(date: :desc).limit(DEFAUL_RECORD_COUNT)
   end
 
   def total_members
