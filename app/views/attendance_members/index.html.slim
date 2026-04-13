@@ -7,7 +7,7 @@
   =turbo_frame_tag nested_dom_id(@attendance, AttendanceMember.new)
   .record-show__search
       = form_with url: attendance_attendance_members_path(@attendance), method: :get, local: false, html: { class: "form form-search" } do |f|
-        .form-row.column
+        .form-row
           = f.text_field :q, value: params[:q], placeholder: "Search members..."
           = f.select :status, attendance_statuses, { selected: params[:status] || "attended" }
           = f.submit "Search", class: "btn btn--primary"
