@@ -14,6 +14,11 @@
 #  baptism_date   :date
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  age_group      :string
+#
+# Indexes
+#
+#  index_members_on_age_group  (age_group)
 #
 
 FactoryBot.define do

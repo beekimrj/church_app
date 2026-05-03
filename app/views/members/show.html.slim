@@ -25,6 +25,10 @@
       span.record-show__field-value = @member.marital_status&.humanize || "-"
 
     .record-show__field
+      span.record-show__field-label Age Group
+      span.record-show__field-value = @member.age_group_label
+
+    .record-show__field
       span.record-show__field-label Date of Birth
       span.record-show__field-value = display_date(@member.date_of_birth)
 

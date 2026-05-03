@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_25_114547) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_03_050615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,6 +78,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_25_114547) do
     t.date "baptism_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "age_group"
+    t.index ["age_group"], name: "index_members_on_age_group"
   end
 
   add_foreign_key "attendance_members", "attendances"

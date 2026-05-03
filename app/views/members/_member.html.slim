@@ -8,6 +8,8 @@ tr id="#{dom_id member}"
   td
     =member.phone_number
   td
+    =member.age_group_label
+  td
     .btn-groups
       =link_to member_path(member), class: "btn btn--light" do
         =create_icon("show")

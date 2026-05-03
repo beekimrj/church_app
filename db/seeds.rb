@@ -123,7 +123,8 @@ members_data.each_with_index do |(first, last, phone, email), index|
     code: "MBR#{index + 1}",
     gender: index.even? ? "male" : "female",
     marital_status: index.even? ? "married" : "single",
-    baptism_date: Date.new(2010, 6, 15)
+    baptism_date: Date.new(2010, 6, 15),
+    age_group: Member.age_groups.keys.sample
   )
 end
 

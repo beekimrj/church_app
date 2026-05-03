@@ -33,6 +33,11 @@
           label.radio-label
             = b.radio_button
             = b.text.capitalize
+
+      .form-row
+        = form.label :age_group, "Age Group"
+        = form.select :age_group, options_for_select(Member::AGE_GROUP_LABELS.map { |key, label| [label, key] }, form.object.age_group), { prompt: "Select Age Group" }, class: "form-control"
+
       .form-row
         = form.label :baptism_date
         = form.date_field :baptism_date

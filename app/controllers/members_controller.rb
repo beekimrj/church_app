@@ -57,6 +57,6 @@ class MembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.expect(member: [ :first_name, :last_name, :phone_number, :email, :date_of_birth, :code, :gender, :marital_status, :baptism_date ])
+      params.expect(member: [ :first_name, :last_name, :phone_number, :email, :date_of_birth, :code, :gender, :marital_status, :baptism_date, :age_group ])
     end
 end
