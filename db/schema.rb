@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_03_050615) do
+ActiveRecord::Schema[8.0].define(version: 2026_05_03_101744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -82,8 +82,42 @@ ActiveRecord::Schema[8.0].define(version: 2026_05_03_050615) do
     t.index ["age_group"], name: "index_members_on_age_group"
   end
 
+  create_table "user_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token", null: false
+    t.string "device_name"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "last_used_at"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expires_at"], name: "index_user_sessions_on_expires_at"
+    t.index ["token"], name: "index_user_sessions_on_token", unique: true
+    t.index ["user_id"], name: "index_user_sessions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", default: "", null: false
+    t.string "password_digest", null: false
+    t.string "full_name"
+    t.string "phone"
+    t.string "email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.datetime "locked_at"
+    t.datetime "last_login_at"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, where: "(email IS NOT NULL)"
+    t.index ["member_id"], name: "index_users_on_member_id"
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
   add_foreign_key "attendance_members", "attendances"
   add_foreign_key "attendance_members", "members"
   add_foreign_key "attendances", "events"
   add_foreign_key "events", "church_services"
+  add_foreign_key "user_sessions", "users"
+  add_foreign_key "users", "members"
 end
