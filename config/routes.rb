@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :user_session
+  resources :passwords, param: :token
   resources :members
   resources :church_services do
     resources :events, shallow: true do

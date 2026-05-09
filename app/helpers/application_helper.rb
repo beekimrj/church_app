@@ -12,8 +12,13 @@ module ApplicationHelper
     end
 
     menu_classes = [ classes_for_active_menu(controller, action), "menu_item", options[:class] ].compact.join(" ")
+    html_options = {
+      class: menu_classes
+    }
 
-    link_to(url || link_params, class: menu_classes) do
+    html_options[:data] = { turbo_method: options[:method] } if options[:method]
+
+    link_to(url || link_params, html_options) do
       create_icon(options[:icon]) + menu_text
     end
   end
