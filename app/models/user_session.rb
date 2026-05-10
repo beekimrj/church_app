@@ -24,4 +24,6 @@ class UserSession < ApplicationRecord
   has_secure_token :token
 
   belongs_to :user
+
+  scope :active, -> { where(expires_at: nil).or(where("expires_at > ?", Time.current)) }
 end
