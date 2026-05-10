@@ -1,0 +1,10 @@
+sidebar.sidebar_container
+  .sidebar__top
+    .brand_container
+      = link_to root_path, class: 'brand' do
+        = image_tag  "church_logo.gif", class: 'brand__logo'
+        span.brand__name
+          | Church of Pentecost
+    .menu_items
+      = menu_item(:user_sessions, :new, 'Sign In', nil,  {icon: 'login'})
+      = menu_item(:passwords, :new, 'Forgot Password?', nil, {icon: 'key'})

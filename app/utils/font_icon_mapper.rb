@@ -13,7 +13,10 @@ class FontIconMapper
     "clipboard" => "fa-solid fa-clipboard-user",
     "calendar" => "fa-solid fa-calendar-days",
     "file" => "fa-solid fa-file-invoice",
-    "qr_code" => "fa-solid fa-qrcode"
+    "qr_code" => "fa-solid fa-qrcode",
+    "login" => "fa-solid fa-arrow-right-to-bracket",
+    "key" => "fa-solid fa-key",
+    "meter" => "fa-solid fa-gauge"
   }
 
   FALLBACK_ICON = ICON_MAPPER["question"]

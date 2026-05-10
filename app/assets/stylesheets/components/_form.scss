@@ -95,6 +95,10 @@
     justify-content: flex-end;
     margin-top: var(--space-xl);
 
+    &.left {
+      justify-content: start;
+    }
+
     .btn-groups {
       display: flex;
       gap: var(--space-s);

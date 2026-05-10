@@ -1,12 +1,15 @@
-= tag.div(flash[:alert], style: "color:red") if flash[:alert]
-= tag.div(flash[:notice], style: "color:green") if flash[:notice]
+.page
+  .page-content
+    = form_with(url: user_session_path, class: "form") do |form|
+      .form-section
+        h2.form-section__title Sign-In Details
+        .form-row
+          = form.label :username
+          = form.text_field :username, required: true, autocomplete: "username", placeholder: "Enter your username", value: params[:username]
+        .form-row
+          = form.label :password
+          = form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password"
 
-= form_with url: user_session_path do |form|
-  = form.text_field :username, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your username address", value: params[:username]
-  br
-  = form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72
-  br
-  = form.submit "Sign in"
-br
-
-= link_to "Forgot password?", new_password_path
+      .form-actions.left
+        .btn-groups
+          = form.submit "Login", class: "btn btn--primary"

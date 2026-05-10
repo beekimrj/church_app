@@ -15,7 +15,10 @@ html
 
   body
     .container
-      = render "shared/sidebar"
+      -if Current.user_session
+        = render "shared/sidebar"
+      -else
+        = render "shared/anonymous_sidebar"
       main
         #flash.flash
           = render "layouts/flash"
