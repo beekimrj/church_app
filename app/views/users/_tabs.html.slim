@@ -1,0 +1,8 @@
+.tabs
+ = link_to user_path(user), class: "tab #{'active' if active_tab == 'details'}" do
+     = create_icon("qr_code")
+     | Details
+
+ = link_to user_user_sessions_path(user), class: "tab #{'active' if active_tab == 'user_sessions'}" do
+   = create_icon("login")
+   | Sessions

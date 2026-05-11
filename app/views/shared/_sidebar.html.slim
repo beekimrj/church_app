@@ -13,5 +13,5 @@ sidebar.sidebar_container
       = menu_item(:attendances, :index, 'Attendance', attendances_path, {icon: 'calendar'})
   .sidebar__bottom
     .menu_buttons
-      = menu_item(:pages, :home, 'My Profile', root_path, {icon: 'user', class: 'profile'})
-      = menu_item(:user_sessions, :destroy, 'Log Out', nil, {icon: 'logout', class: 'logout', method: :delete})
+      = menu_item(:users, :show, 'My Profile', user_path(Current.user), {icon: 'user', class: 'profile'})
+      = menu_item(:user_sessions, :logout, 'Log Out', nil, {icon: 'logout', class: 'logout', method: :delete})

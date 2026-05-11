@@ -1,0 +1,21 @@
+.record-show
+  .record-show__header
+    .record-show__title
+      h1 = @user.full_name.presence || @user.username
+    = render "users/tabs", active_tab: "user_sessions", user: @user
+
+  .record-show__grid
+    .table-container
+      table
+        thead
+          tr
+            th Device Name
+            th Last Used At
+            th Status
+            th Actions
+        tbody
+          - @user_sessions.each do |user_session|
+            = render user_session
+
+      /.pagination
+        = paginate @user_sessions

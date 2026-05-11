@@ -1,0 +1,42 @@
+.record-show
+  .record-show__header
+    .record-show__title
+      h1 = @user.username
+
+    = render "users/tabs", active_tab: "details", user: @user
+  .record-show__grid.row
+    .record-show__field
+      span.record-show__field-label Full Name
+      span.record-show__field-value = @user.full_name.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Username
+      span.record-show__field-value = @user.username.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Email
+      span.record-show__field-value = @user.email.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Phone
+      span.record-show__field-value = @user.phone.presence || "-"
+
+    .record-show__field
+      span.record-show__field-label Status
+      span.record-show__field-value = @user.status
+
+    -if @user.member.present?
+      .record-show__field
+        span.record-show__field-label Member Detail
+        span.record-show__field-value =link_to @user.member.full_name, member_path(@user.member)
+
+
+  .btn-groups.btn-groups__right
+    = link_to "Back", users_path, class: "btn btn--secondary"
+    = link_to "Edit", edit_user_path(@user), class: "btn btn--primary"
+    -if @user == Current.user
+      = link_to "Change Password", edit_user_path(@user), class: "btn btn--primary"
+    = link_to "Delete",
+        user_path(@user),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this user?" },
+        class: "btn btn--danger"

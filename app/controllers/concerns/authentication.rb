@@ -29,6 +29,7 @@ module Authentication
   end
 
   def refresh_session_expiry
+    Current.user_session.update(expires_at: session_expiry_time, last_used_at: Time.current)
     set_cookie(Current.user_session)
   end
 
@@ -53,16 +54,20 @@ module Authentication
     user.user_sessions.create!(
       user_agent: request.user_agent,
       ip_address: request.remote_ip,
+      expires_at: session_expiry_time,
+      last_used_at: Time.current
     ).tap do |user_session|
       Current.user_session = user_session
       set_cookie(user_session)
     end
   end
 
-  def terminate_user_session
-    Current.user_session&.update!(expires_at: Time.current)
+  def terminate_user_session(user_session)
+    user_session.update!(expires_at: Time.current)
 
-    cookies.delete(:user_token)
+    if user_session == Current.user_session
+      cookies.delete(:user_token)
+    end
   end
 
   def set_cookie(user_session)

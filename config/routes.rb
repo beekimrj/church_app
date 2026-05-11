@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resource :user_session
+  resources :users do
+    resources :user_sessions, only: %i[index destroy]
+  end
+  resource :user_session, only: %i[new create]
+  delete :logout, to: "user_sessions#logout"
   resources :passwords, param: :token
   resources :members
   resources :church_services do
